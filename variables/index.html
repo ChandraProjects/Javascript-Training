@@ -9,8 +9,176 @@
 
 <body>
 	<main>
-		<div>
-			<h3>Variables<h3>
+		<div class="var_container">
+			<h1 class="menu"><a href="../index.html">Menu</a></h1>
+			<div class="title_container">
+				<h4><span>"Variables"</span></h4>
+			</div>
+			<div class="des_continer">
+				<div class="des_border">
+					<div class="description">
+						<strong>What is a Variable?</strong>
+						<p>Variables are named values and can store any type of JavaScript value.</p>
+						<p>To create a variable in JavaScript, use the let keyword. &nbsp; <code>let message;</code></p>
+						<p>Now, we can put some data into it by using the assignment operator =:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>message;</code></code>
+								<code>message = 'Hello';<code class="comment"> // store the string</code></code>
+							</pre>
+						</div>
+						<p>The string is now saved into the memory area associated with the variable. We can access it
+							using the variable name:</p>
+						<p>When the value is changed, the old value is removed from the variable:</p>
+						<p>We can also declare two variables and copy data from one into the other.</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>hello = 'Hello world!';</code></code>
+								<code><code class="keyword">let </code><code>message</code></code>
+								<code class="comment">// copy 'Hello world' from hello into message</code>
+								<code>message = 'Hello';</code>
+							</pre>
+						</div>
+						<p>We can also declare multiple variables in one line:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>user = 'John', age = 25, message = 'Hello';</code></code>
+								<code class="comment">// This might seem shorter, but we don’t recommend it. For the sake of better readability, please use a single line per variable.</code>
+							</pre>
+						</div>
+						<strong>var instead of let</strong>
+						<p>In older scripts, you may also find another keyword: var instead of let:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">var </code><code>message = 'Hello';</code></code>
+							</pre>
+						</div>
+						<p>The var keyword is almost the same as let. It also declares a variable, but in a slightly
+							different, “old-school” way.</p>
+						<p>There are subtle differences between let and var, but they do not matter for us yet. We’ll
+							cover them in detail later.</p>
+
+						<strong>Variable naming</strong>
+						<p>There are two limitations on variable names in JavaScript:</p>
+						<ul>
+							<li>The name must contain only letters, digits, or the symbols $ and _.</li>
+							<li> first character must not be a digit.</li>
+						</ul>
+						<p>Examples of valid names:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>userName;</code></code>
+								<code><code class="keyword">let </code><code>test123;</code></code>
+							</pre>
+						</div>
+						<p>When the name contains multiple words, camelCase is commonly used. That is: words go one
+							after another, each word except first starting with a capital letter: myVeryLongName.
+							<br>
+							What’s interesting – the dollar sign '$' and the underscore '_' can also be used in names.
+							They are regular symbols, just like letters, without any special meaning.
+							<br>
+							These names are valid:
+						</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>$ = 1;</code><code class="comment">// declared a variable with the name "$"</code></code>
+								<code><code class="keyword">let </code><code>_ = 12;</code><code class="comment">// and now a variable with the name "_"</code></code>
+							</pre>
+						</div>
+						<p>Examples of incorrect variable names:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>la;</code><code class="comment">// cannot start with a digit</code></code>
+								<code><code class="keyword">let </code><code>my-name;</code><code class="comment">// hyphens '-' aren't allowed in the name</code></code>
+							</pre>
+						</div>
+						<p>Variables named apple and AppLE are two different variables.</p>
+
+						<strong>Non-Latin letters are allowed, but not recommended</strong>
+						<p>It is possible to use any language, including cyrillic letters or even hieroglyphs, like
+							this:</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code>имя = 'Hello';</code></code>
+								<code><code class="keyword">let </code><code>我 = 'Hello';</code></code>
+							</pre>
+						</div>
+						<p>Technically, there is no error here, such names are allowed, but there is an international
+							tradition to use English in variable names. Even if we’re writing a small script, it may
+							have a long life ahead. People from other countries may need to read it some time.</p>
+
+						<strong>Reserved names</strong>
+						<p>There is a list of reserved words, which cannot be used as variable names because they are
+							used by the language itself.
+							<br>
+							For example: let, class, return, and function are reserved.
+							<br>
+							The code below gives a syntax error:
+						</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">let </code><code><code class="keyword">let</code>= 5</code><code class="comment">// can't name a variable "let", error!</code></code>
+								<code><code class="keyword">let </code><code><code class="keyword">return</code>= 5;</code><code class="comment">// also can't name it "return", error!</code></code>
+							</pre>
+						</div>
+
+						<strong>Constants</strong>
+						<p>To declare a constant (unchanging) variable, use const instead of let:
+							<br>
+							Variables declared using const are called “constants”. They cannot be reassigned. An attempt
+							to do so would cause an error:
+						</p>
+
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">const </code><code>thisIsConstant = 'Hello Constant!'</code></code>
+								<code><code>thisIsConstant = 'Changing you!!!'</code><code class="comment">// error, can't reassign the constant!</code></code>
+							</pre>
+						</div>
+						<p>When a programmer is sure that a variable will never change, they can declare it with const
+							to guarantee and clearly communicate that fact to everyone.</p>
+
+						<strong>Uppercase constants</strong>
+						<p>There is a widespread practice to use constants as aliases for difficult-to-remember values
+							that are known prior to execution.
+							<br>
+							Such constants are named using capital letters and underscores.
+							<br>
+							For instance, let’s make constants for colors in so-called “web” (hexadecimal) format:
+						</p>
+						<div class="code_block">
+							<pre>
+								<code><code class="keyword">const </code><code>COLOR_RED = "#F00"</code></code>
+								<code><code class="keyword">const </code><code>COLOR_BLUE = "#00F"</code></code>
+								<code><code class="keyword">const </code><code>COLOR_ORANGE = "#FF7F00"</code></code>
+							</pre>
+						</div>
+						<p>
+							Benefits:
+						<ul>
+							<li>COLOR_ORANGE is much easier to remember than "#FF7F00".</li>
+							<li>is much easier to mistype "#FF7F00" than COLOR_ORANGE.</li>
+							<li>When reading the code, COLOR_ORANGE is much more meaningful than #FF7F00.</li>
+						</ul>
+						</p>
+
+						<strong>Overview</strong>
+						<p>
+							We can declare variables to store data by using the var, let, or const keywords.
+						<ul>
+							<li>let – is a modern variable declaration.</li>
+							<li>var – is an old-school variable declaration. Normally we don’t use it at all, but we’ll
+							</li>
+							<li>cover subtle differences from let in the chapter The old "var", just in case you need
+								them.</li>
+							<li>const – is like let, but the value of the variable can’t be changed.</li>
+							<li>Variables should be named in a way that allows us to easily understand what’s inside
+								them.</li>
+						</ul>
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 </body>
