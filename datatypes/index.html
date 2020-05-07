@@ -1,0 +1,165 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Data Types"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Dynamic typing</strong>
+                        <p>JavaScript is a loosely typed or a dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types</p>
+                        <div class="code_block">
+                            <pre>
+                                    <code><code class="keyword">let </code><code>foo = 42;</code><code class="comment">// foo is now a number</code></code>
+                                    <code><code>foo = 'bar'</code><code class="comment">// foo is now a string</code></code>
+                                    <code><code>foo = true</code><code class="comment">// foo is now a boolean</code></code>
+                                </pre>
+                        </div>
+                        <strong>Two Kinds of Data</strong>
+                        <p>The latest ECMAScript standard defines nine types:
+                            <br> In JavaScript there are two different kinds of data: <em>primitives</em> , and <em>
+                                objects</em>. A primitive is simply a data type that is not an object, and has no methods.
+                            <br> Primitive values: strings, numbers, booleans – are assigned/copied “as a whole value”.
+                        </p>
+                        <p><em>Click to expand</em></p>
+                        <ul class="data_types_list">
+                            <li>
+                                <button onclick="myFunction('boolean')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    Boolean</button>
+                                <div id="boolean" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>A boolean represents only one of two values: true, or false. Think of a boolean as an on/off or a yes/no switch.
+                                        <div class="code_block center">
+                                            <pre>
+                                                <code><code class="keyword">var </code><code>bool = true;</code></code>
+                                                <code><code class="keyword">var </code><code>boo2 = false;</code></code>
+                                            </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <button onclick="myFunction('number')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    Number</button>
+                                <div id="number" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>There is only one type of Number in JavaScript. Numbers can be written with or without a decimal point. A number can also be +Infinity, -Infinity, and NaN (not a number).
+                                        <div class="code_block center">
+                                            <pre>
+                                                <code><code class="keyword">var </code><code>num1 = 32;</code></code>
+                                                <code><code class="keyword">var </code><code>num2 = +Infinity;</code></code>
+                                            </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li><button onclick="myFunction('string')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    String</button>
+                                <div id="string" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>Strings are used for storing text. Strings must be inside of either double or single quotes.
+                                        <div class="code_block center">
+                                            <pre>
+                                                <code><code class="keyword">var </code><code>str1 = 'hello, it is me';</code></code>
+                                                <code><code class="keyword">var </code><code>str2 = 'hello, it is you';</code></code>
+                                            </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li><button onclick="myFunction('null')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    Null</button>
+                                <div id="null" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>Null has one value: null. It is explicitly nothing.
+                                        <div class="code_block center">
+                                            <pre>
+                                                <code><code class="keyword">var </code><code>nothing = null;</code></code>
+                                            </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li><button onclick="myFunction('undefined')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    Undefined</button>
+                                <div id="undefined" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>A variable that has no value is undefined.
+                                        <div class="code_block center">
+                                            <pre>
+                                            <code><code class="keyword">var </code><code>testVar;</code></code>
+                                            <code><code>console.log(testVar);</code><code class="comment">// undefined</code></code>
+                                        </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li><button onclick="myFunction('symbol')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    Symbol</button>
+                                <div id="symbol" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>Symbols are new in ES6. A Symbol is an immutable primitive value that is unique.
+                                        <div class="code_block center">
+                                            <pre>
+                                        <code><code class="keyword">const </code><code>mySymbol = Symbol('mySymbol');</code></code>
+                                    </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                            <li><button onclick="myFunction('bigInt')" class="w3-btn w3-block w3-left-align w3-yellow">
+                                    BigInt</button>
+                                <div id="bigInt" class="w3-hide w3-container w3-left-align w3-light-grey">
+                                    <p>BigInt is a special numeric type that provides support for integers of arbitrary length.
+                                        <br> A bigint is created by appending n to the end of an integer literal or by calling the function BigInt that creates bigints from strings, numbers etc.
+                                        <div class="code_block center">
+                                            <pre>
+                                    <code><code class="keyword">const </code><code>bigint = 1234567890123456789012345678901234567890n;</code></code>
+                                </pre>
+                                        </div>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <strong>What about Objects?</strong>
+                        <p>
+                            Objects are not a primitive data Type.<br> An object is a collection of properties. These properties are stored in key/value pairs. Properties can reference any type of data, including objects and/or primitive values.<br> One
+                            of the fundamental differences of objects vs primitives is that they are stored and copied “by reference”.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                <code>
+                                var obj = {
+                                    key1: 'value',
+                                    key2: 'value',
+                                    key3: true,
+                                    key4: 32,
+                                    key5: {}
+                                  }
+                                </code>
+                            </pre>
+                        </div>
+                        <p>A variable stores not the object itself, but its “address in memory”, in other words “a reference” to it. When an object variable is copied – the reference is copied, the object is not duplicated.
+                        </p>
+
+                        <strong>Loosely Typed</strong>
+                        <p>JavaScript is a loosely typed language. This means you don’t have to declare a variable’s type. JavaScript automatically determines it for you. It also means that a variables type can change.</p>
+
+                        <em>Thanks for Reading....</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+* {
+    word-spacing: 0.2em;
+}
+
+em {
+    font-weight: bolder;
+    font-size: medium;
+    color: yellowgreen;
+}
+
+.data_types_list {
+    list-style: none;
+}
+
+.data_types_list li {
+    margin: 5px 0px;
+}

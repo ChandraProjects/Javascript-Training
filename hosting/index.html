@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Hosting"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>JavaScript Hoisting</strong>
+                        <p>Hoisting is JavaScript's default behavior of moving declarations to the top.</p>
+                        <strong>JavaScript Declarations are Hoisted</strong>
+                        <p>In JavaScript, a variable can be declared after it has been used.</p>
+                        <p>In other words; a variable can be used before it has been declared.</p>
+                        <div class="code_block">
+                            <pre>
+                                <code><code>x = 5</code></code>
+                                <code><code>elem = document.getElementById("demo"); <code class="comment">// Find an element</code></code></code>
+                                <code>elem.innerHTML = x;<code class="comment"> // Display x in the element</code></code>
+                                <code><code class="keyword">var</code> x; <code class="comment">// Declare x</code></code>
+                            </pre>
+                        </div>
+                        <p>Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).</p>
+                        <strong>The let and const Keywords</strong>
+                        <p>Variables and constants declared with let or const are not hoisted!</p>
+                        <strong>JavaScript Initializations are Not Hoisted</strong>
+                        <p>JavaScript only hoists declarations, not initializations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
