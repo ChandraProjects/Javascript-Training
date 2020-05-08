@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Preparation</title>
 
     <link rel="stylesheet" href="../variables/variables.css">
@@ -33,11 +34,56 @@
                                 <code><code class="keyword">var</code> x; <code class="comment">// Declare x</code></code>
                             </pre>
                         </div>
-                        <p>Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).</p>
+                        <p>Hoisting is JavaScript's default behavior of moving all declarations to the top of the
+                            current scope (to the top of the current script or the current function).</p>
                         <strong>The let and const Keywords</strong>
                         <p>Variables and constants declared with let or const are not hoisted!</p>
                         <strong>JavaScript Initializations are Not Hoisted</strong>
                         <p>JavaScript only hoists declarations, not initializations.</p>
+                        <p>Example 1 does not give the same result as Example 2:</p>
+                        <div class="code_block">
+                            <p>Example 1</p>
+                            <pre>
+                            <code><code class="keyword">var</code> x = 5; <code class="comment">// Initialize x</code></code>
+                            <code><code class="keyword">var </code>y = 7; <code class="comment">// Initialize y</code></code>
+                            
+                            <code>elem = document.getElementById("demo"); <code class="comment">// Find an element</code></code>
+                            <code>elem.innerHTML = x + " " + y;</code>
+                            </pre>
+                        </div>
+                        <div class="code_block">
+                            <p>Example 2</p>
+                            <pre>
+                                <code><code class="keyword">var</code> x = 5; <code class="comment">// Initialize x</code></code>
+                                <code>elem = document.getElementById("demo"); <code class="comment">// Find an element</code></code>
+                                <code>elem.innerHTML = x + " " + y;</code>
+                                <code><code class="keyword">var </code>y = 7; <code class="comment">// Initialize y</code></code>
+                            </pre>
+                        </div>
+                        <p>Does it make sense that y is undefined in the last example?<br>
+                            This is because only the declaration (var y), not the initialization (=7) is hoisted to the
+                            top.<br>
+                            Because of hoisting, y has been declared before it is used, but because initializations are
+                            not hoisted, the value of y
+                            is undefined.
+                        </p>
+                        <p>Example 2 is the same as writing:</p>
+                        <div class="code_block">
+                            <p>Example 2</p>
+                            <pre>
+                                <code><code class="keyword">var</code> x = 5; <code class="comment">// Initialize x</code></code>
+                                <code><code class="keyword">var </code>y; <code class="comment">// Declared y</code></code>
+                                <code>elem = document.getElementById("demo"); <code class="comment">// Find an element</code></code>
+                                <code>elem.innerHTML = x + " " + y;</code>
+                                <code>y = 7; <code class="comment">// Assigned 7 to y</code></code>
+                            </pre>
+                        </div>
+                        <p>JavaScript in strict mode does not allow variables to be used if they are not declared.<br>
+                            Hoisting is (to many developers) an unknown or overlooked behavior of JavaScript.<br>
+                            If a developer doesn't understand hoisting, programs may contain bugs (errors).<br>
+                            To avoid bugs, always declare all variables at the beginning of every scope.<br>
+                            Since this is how JavaScript interprets the code, it is always a good rule.</p>
+                        <em>Thanks for reading...</em>
                     </div>
                 </div>
             </div>

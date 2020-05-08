@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Arrays"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>What are Arrays?</strong>
+                        <p>Arrays are one of, if not the most important object in the JavaScript language. It can be
+                            used to represent and store
+                            large amounts of almost any data type that you will use for your apps or websites. At the
+                            basic level they can be used
+                            to store lists of things, such as names or numbers. Below is a simple example of an array of
+                            names.</p>
+                        <div class="code_block">
+                            <pre>
+                                    <code>let names = ["Bill", "James", "Larry", "Tim"]</code>
+
+                                </pre>
+                        </div>
+                        <p>
+                            The list of names above is being stored in a variable called names. This allows you to have
+                            access to the list in any
+                            part of your code depending on the scope or position where the variable is declared. You can
+                            access the names in the
+                            array by the position number of the items starting from left to right. Do note that
+                            positions do not start at 1, but 0
+                            in arrays. You will also need to use bracket notation for the position.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                <code>let leader;</code>
+                                <code>let names = ["Bill", "James", "Larry", "Tim"]</code>
+                                <code>leader = names[2]; <code class="comment">//leader is set to Larry</code></code>
+                            </pre>
+                        </div>
+                        <p>
+                            As you can see from the above example, we set the variable leader to be the name Larry from
+                            the array by accessing it's
+                            position of 2. Again, it would not be 3 because the positions start at 0. What really makes
+                            arrays great besides being
+                            able to store large amounts of data, are the built in array properties and methods(actions)
+                            that let you manipulate the
+                            data. I have included a couple in the example below.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                <code>let names = ["James", "Bill", "Tim", "Larry"];</code>
+                                <code>names.length; <code class="comment">// returns length of array: 4</code></code>
+                                <code>names.sort(); <code class="comment">//items in array are sorted: ["Bill", "James", "Larry", "Tim"]</code></code>
+                                <code>names.push("Willy"); <code class="comment">/**item is added to the end of array and the length of array is returned:
+                                ["Bill", "James", "Larry", "Tim", "Willy"] length of 5**/</code></code>
+                                <code>names.pop(); <code class="comment">//the last item in the array will be removed and the item will be returned: "Willy"</code></code>
+                            </pre>
+                        </div>
+                        <p>
+                            The above are just some of the many methods that you can use on arrays to help manipulate
+                            the data in the way that you
+                            need. A very good reference for the other arrays methods can be found at w3schools <a
+                                target="_blank " href="https://www.w3schools.com/jsref/jsref_obj_array.asp">here</a>
+                        </p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

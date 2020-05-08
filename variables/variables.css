@@ -19,9 +19,11 @@
 }
 
 em {
+    display: block;
     font-weight: bolder;
     font-size: medium;
     color: yellowgreen;
+    margin: 5px 0px;
 }
 
 .menu {
@@ -90,7 +92,7 @@ em {
 }
 
 .code_block {
-    width: 70%;
+    width: 100%;
 }
 
 .code_block pre {
@@ -102,6 +104,7 @@ em {
     border: 1px solid #f5f2f0;
     color: black;
     padding-left: 1rem;
+    padding-top: 5px;
 }
 
 code {

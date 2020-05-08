@@ -1,0 +1,134 @@
+{
+    "Fundamentals": [
+        {
+            "title": "Variables",
+            "url": "variables/index.html"
+        },
+        {
+            "title": "Data Types",
+            "url": "datatypes/index.html"
+        },
+        {
+            "title": "Hosting",
+            "url": "hosting/index.html"
+        },
+        {
+            "title": "var/let/const",
+            "url": "varLetConst/index.html"
+        },
+        {
+            "title": "Functions",
+            "url": "functions/index.html"
+        },
+        {
+            "title": "Arrow Functions",
+            "url": "arrowFunctions/index.html"
+        }
+    ],
+    "Data Types": [
+        {
+            "title": "Arrays",
+            "url": "arrays/index.html"
+        },
+        {
+            "title": "Arrays Methods",
+            "url": "arrayMethods/index.html"
+        },
+        {
+            "title": "Map and Set",
+            "url": ""
+        },
+        {
+            "title": "WeakMap and WeakSet",
+            "url": ""
+        },
+        {
+            "title": "Destructuring assignment",
+            "url": ""
+        }
+    ],
+    "Advanced Functions": [
+        {
+            "title": "Rest parameters & spread syntax",
+            "url": ""
+        },
+        {
+            "title": "Global Object",
+            "url": ""
+        },
+        {
+            "title": "Function object, NFE",
+            "url": ""
+        },
+        {
+            "title": "SetTimeout and SetInterval",
+            "url": ""
+        },
+        {
+            "title": "Call,Apply and Bind",
+            "url": ""
+        }
+    ],
+    "Classes": [
+        {
+            "title": "Class basic syntax",
+            "url": ""
+        },
+        {
+            "title": "Class inheritance",
+            "url": ""
+        },
+        {
+            "title": "Static properties and methods",
+            "url": ""
+        },
+        {
+            "title": "Instanceof",
+            "url": ""
+        }
+    ],
+    "Objects": [
+        {
+            "title": "Objects",
+            "url": ""
+        },
+        {
+            "title": "this",
+            "url": ""
+        },
+        {
+            "title": "Constructor, operator 'new'",
+            "url": ""
+        },
+        {
+            "title": "Optional chaining '?.'",
+            "url": ""
+        },
+        {
+            "title": "Object to primitive conversion",
+            "url": ""
+        },
+        {
+            "title": "Prototypes and Inheritance",
+            "url": ""
+        }
+    ],
+    "Promises, async/await": [
+        {
+            "title": "Callbacks",
+            "url": ""
+        },
+        {
+            "title": "Promise & Promises chaining",
+            "url": ""
+        },
+        {
+            "title": "Error handling with promises",
+            "url": ""
+        },
+        {
+            "title": "Async/await",
+            "url": ""
+        }
+    ]
+}

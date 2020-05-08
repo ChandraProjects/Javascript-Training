@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Functions"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>What is a Function?</strong>
+                        <p>Functions are basically “building blocks” of the program or we can say a function is a
+                            process which takes some input
+                            called arguments and produces some output called a return value.They allow the code to be
+                            called many times without
+                            repetition.</p>
+                        <p>
+                            Functions are key to the programming and we can reuse the functions
+
+                            So let's talk about how functions work in JavaScript.
+                            Every function in JavaScript starts with a keyword function.
+
+                            Let's write our first function we already know every function starts
+                            with a keyword function.
+                        </p>
+                        <strong>Function Declaration</strong>
+                        <div class="code_block">
+                            <pre>
+                                <div>
+                                function add(a,b){
+                                    return a+b;
+                                }
+                                </div>
+                            </pre>
+                        </div>
+                        <p>We called it as function defintion or function statements/declaration.<br>
+                            Function declarations are hoisted—moved in their entirety to the beginning of the current
+                            scope.
+                        </p>
+                        <p>What above function does is a function with a name add takes
+                            two parameters and returns the addition of two parameters.</p>
+                        <p>So By defining a function cant do any work to make functions work we need to invoke
+                            it/calling a function is called
+                            function invocation.</p>
+                        <div class="code_block">
+                            <pre>add(1,2) //3</pre>
+                        </div>
+                        <p>we are passing two arguments to the function which are 1,2 so we get an output of 1 and 2
+                            which is 3.
+
+                            What the hell arguments/parameters have you confused why I'm calling in different names in
+                            the same function.</p>
+                        <strong>The Special Variable arguments</strong>
+                        <p>You can call any function in JavaScript with an arbitrary amount of arguments; the language
+                            will never complain. It
+                            will, however, make all parameters available via the special variable arguments. arguments
+                            look like an array, but has
+                            none of the array methods:</p>
+
+                        <strong>Lets clear confusion now.</strong>
+                        <p>
+                            <b>Parameters:</b> which are passing to the function at the time of declaration.
+                            Parameters are named variables which are a,b in our add function.
+
+                            <b>Arguments:</b> Which are passing to the function at the time of invocation.Arguments are
+                            the
+                            values which are 1,2 in our add
+                            function.
+
+                            What return does to our function is it necessary😛.
+                            return is a keyword it helps to stop✋ the running function.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            function printNumbers(n){
+                                if(n === 1){
+                                    return 1;
+                                }
+                                if(n === 2){
+                                    return 2;
+                                }
+                            }
+                        </pre>
+                        </div>
+                        <p>
+                            In above example, we are stopping the function if n is 1/n is 2.
+                            so we are stooping function at 2 different times.
+
+                            if n is 1 then we never reach the line 3 because we are using return at
+                            line 2.so our function stops running🤙 at line 2 and gives output 1.
+                        </p>
+                        <em>Let's dive deeper in another concepts in Advanced Functions...</em>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

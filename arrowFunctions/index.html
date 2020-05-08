@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Arrow Functions"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Intro to Arrow Functions</strong>
+                        <p>One of the most celebrated additions to JavaScript a short three or so years ago (version
+                            ES6/ES2015) was the
+                            introduction to the Arrow Function.(Or Fat arrow function)</p>
+                        <p>A simple explanation of what an arrow function accomplishes is that it cleans up your
+                            function code to be more concise,
+                            less messy looking by using shorter syntax.</p>
+                        <p>Take this simple function to double a number:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                const double = function (num) {
+                                    return num * 2;
+                                }
+
+                                double(3); // output is 6
+
+                                double (12); // output is 24
+                            </pre>
+                        </div>
+                        <p>Now look what an arrow function can do:</p>
+                        <div class="code_block">
+                            <pre>
+                                const doubleArrow = num => num * 2;
+                                
+                                doubleArrow(3); // output is still 6!
+                                
+                                doubleArrow(12); // output is still 24!
+                            </pre>
+                        </div>
+                        <p>The doubleArrow function did the exact same thing as what the double function did but in one
+                            line of code instead of
+                            three! That's amazing!</p>
+                        <p>
+                            That was a very simple example using just one parameter. Let's do another very simple
+                            example but with two parameters
+                            this time, just for kicks.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                // regular function
+                                const sum = function (num1, num2) {
+                                    return num1 + num2;
+                                }
+                                
+                                // arrow function version
+                                const sumArrow = (num 1, num2) => num1 + num2;
+                                
+                                sum(1, 10); // output is 11
+                                
+                                sumArrow (1, 10); // output is still 11
+                            </pre>
+                        </div>
+                        <p>The only difference between the double and sum syntax is we added the parentheses back in
+                            when there was more than one
+                            parameter to apply. You can still include the parentheses if there is just one parameter,
+                            but they're optional.</p>
+
+                        <em>Let's dive deeper in another concepts in Advanced Functions...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

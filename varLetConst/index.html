@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"var/let/const"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Reassign VS Redeclare</strong>
+                        <p>When you create a variable, you declare it with the keywords let, var, const. Reassign means
+                            you are giving the variable another value. var can both be redeclared and reassigned. You
+                            will see that it is different
+                            for const and let from this table.</p>
+                        <strong>Here is the table for reference</strong>
+                        <table>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>scope</th>
+                                <th>Can be Redeclared</th>
+                                <th>Can be Reassigned</th>
+                                <th>Hoisting Behaviour</th>
+                            </tr>
+                            <tr>
+                                <td><code class="keyword">var</code></td>
+                                <td>Function scope and Global scope</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                                <td>Initialized with undefined</td>
+                            </tr>
+                            <tr>
+                                <td><code class="keyword">let</code></td>
+                                <td>Block</td>
+                                <td>No</td>
+                                <td>Yes</td>
+                                <td>Uninitialized</td>
+                            </tr>
+                            <tr>
+                                <td><code class="keyword">cont</code></td>
+                                <td>Block</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Uninitialized</td>
+                            </tr>
+                        </table>
+                        <div class="code_block">
+                            <pre>
+                                <code><code class="keyword">var</code> color = 'blue'; <code class="comment">//color declared</code></code>
+                                <code>color = 'black' <code class="comment">//color reassigned</code></code>
+                                <code><code class="keyword">var</code> color = 'pink' <code class="comment">//color redeclared</code>
+                            </pre>
+                        </div>
+                        <strong>Scope</strong>
+                        <p>
+                            Var, let, and const have different types of scope. Scope is the context where variables and
+                            expressions live
+                        </p>
+                        <strong>Types of Scope</strong>
+                        <ul>
+                            <li>
+                                <p><b>Global:</b> Variables can be accessed anywhere. A JS document is globally scoped.
+                                    var is
+                                    globally scoped unless it is
+                                    declared in a function scope.</p>
+                            </li>
+                            <li>
+                                <p>
+                                    <b>Local:</b> Variables in a function scope or block scope are local.
+                                </p>
+                            </li>
+                            <li>
+                                <p><b>Lexical:</b> A child scope has access to data in its parent's scope. Then nested
+                                    functions - inner functions have access to
+                                    variables of the outer function.</p>
+                            </li>
+                            <li>
+                                <p><b>Block:</b> Code enclosed in curly brackets {} can't be accessed outside the block.
+                                    Variables declared with let and const
+                                    have block scope. You see the block scopes in if/else statements, for example. var
+                                    variables are NOT block scope.</p>
+                            </li>
+                            <li>
+                                <p><b>Function:</b> The variables declared in a function is accessible in that local
+                                    scope. var is used to declare in functions,
+                                    though you might be told to only use let from now on.</p>
+                            </li>
+                        </ul>
+                        <div class="code_block">
+                            <pre>
+                                //Global Scope
+                                let milkyWay = 'I am globally scoped, so you can access me anywhere!';
+                                
+                                {   //Block Scope
+                                    var earth = 'Earth';
+                                    const sun = 'Sun';
+                                    let house = 'My house';
+                                }
+                                
+                                console.log(earth) //'Earth'
+                                // console.log(milkyway) //'I am globally scoped, so you can access me anywhere!'
+                                //console.log(house) // will return Error bc house is in block scope
+                                console.log(sun) //will return Error bc sun is in block scope
+                            </pre>
+                        </div>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
