@@ -35,22 +35,48 @@
             "url": "arrayMethods/index.html"
         },
         {
-            "title": "Map and Set",
-            "url": ""
+            "title": "Map",
+            "url": "map/index.html"
+        },
+        {
+            "title": "Set",
+            "url": "set/index.html"
         },
         {
             "title": "WeakMap and WeakSet",
-            "url": ""
+            "url": "weakmapandweakset/index.html"
         },
         {
             "title": "Destructuring assignment",
+            "url": "destructuring/index.html"
+        }
+    ],
+    "Objects": [
+        {
+            "title": "Objects",
+            "url": "objects/index.html"
+        },
+        {
+            "title": "Constructor, operator 'new'",
+            "url": "newConstructor/index.html"
+        },
+        {
+            "title": "this",
+            "url": ""
+        },
+        {
+            "title": "Object to primitive conversion",
+            "url": ""
+        },
+        {
+            "title": "Prototypes and Inheritance",
             "url": ""
         }
     ],
     "Advanced Functions": [
         {
             "title": "Rest parameters & spread syntax",
-            "url": ""
+            "url": "restparamsandspread/index.html"
         },
         {
             "title": "Global Object",
@@ -84,32 +110,6 @@
         },
         {
             "title": "Instanceof",
-            "url": ""
-        }
-    ],
-    "Objects": [
-        {
-            "title": "Objects",
-            "url": ""
-        },
-        {
-            "title": "this",
-            "url": ""
-        },
-        {
-            "title": "Constructor, operator 'new'",
-            "url": ""
-        },
-        {
-            "title": "Optional chaining '?.'",
-            "url": ""
-        },
-        {
-            "title": "Object to primitive conversion",
-            "url": ""
-        },
-        {
-            "title": "Prototypes and Inheritance",
             "url": ""
         }
     ],

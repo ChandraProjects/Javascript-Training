@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Objects"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>What is an object?</strong>
+                        <p>
+                            An object in JavaScript is quite similar to an array — it is a data type which stores lots
+                            of values. These values can
+                            be any data type — numbers, strings, booleans, functions, and even arrays and objects!
+
+                            The difference between an array and an object is how the values are referenced. In an array,
+                            you reference a value with
+                            a number (its position in the array) — for example:
+                        </p>
+                        <div class="code_block">
+                            <pre>myArray[3]</pre>
+                        </div>
+                        <p>When referencing a value in an object, you do so using a name instead of a number. For
+                            example:</p>
+                        <div class="code_block">
+                            <pre>myObject['name']</pre>
+                            <p>That's it! Name instead of number.</p>
+                        </div>
+                        <strong>How to declare an object
+                        </strong>
+                        <p>The syntax for declaring an object is different to the syntax for an array. Here's what it
+                            looks like:</p>
+                        <div class="code_block">
+                            <pre>
+                                var myFriend = {
+                                    firstName: 'John', 
+                                    lastName: 'Smith', 
+                                    age: 27, 
+                                    nationality: 'British'
+                                };
+                            </pre>
+                        </div>
+                        <p>As you can see, it's kind of similar to the array syntax, but it has curly brackets instead
+                            of square brackets. The
+                            items are still comma-separated. However, the items now have a 'name' as well as a value.
+                            For example:</p>
+                        <div class="code_block">
+                            <pre>age: 27</pre>
+                        </div>
+                        <p>Here, age is the name (aka 'key') of the item and 27 is the item's value. They are separated
+                            by a colon.</p>
+                        <p>We call this a key-value pair. It has a key and a value... (really?)</p>
+                        <p>
+                            So an object is made of key-value pairs separated by commas, and the whole thing is wrapped
+                            in a set of curly brackets.
+                        </p>
+                        <strong>How to get/set a value in an object
+                        </strong>
+                        <p>As I mentioned near the beginning, this is how you reference an item in an object:
+                        </p>
+                        <div class="code_block">
+                            <pre>myObject['key']</pre>
+                        </div>
+                        <p>You can express it this way as well:(myObject.key)</p>
+                        <p>With the second option, you can't have variables or special characters (including spaces) as
+                            the key. For example, these
+                            wouldn't work:</p>
+                        <div class="code_block">
+                            <pre>
+                                myObject[someVarContainingTheKey];
+                                myObject['I have spaces and special characters ;)']
+                                // As you can see, they don't turn out so well!
+
+                                myObject.someVarContainingTheKey // No longer a variable - equivalent to myObject['someVarContainingTheKey']
+                                myObject.I have spaces and special characters ;) // \0_0/ The syntax errors are killing me
+                            </pre>
+                        </div>
+                        <p>It's worth saying that it is bad programming practice to use special characters in variable
+                            names or object keys. The
+                            exception would be if you were using a form of user input (which might include spaces) as
+                            your key.</p>
+                        <p>
+                            Unless you have special characters or a variable as your key, it is best to use the second
+                            option (myObject.key). Why?
+                            It just looks nicer (it also makes more sense for functions, which you'll see soon). But
+                            it's up to you.
+                        </p>
+                        <strong>Functions in objects
+                        </strong>
+                        <p>
+                            I told you at the start that objects can have any types of data inside them. This includes
+                            functions! But how would you
+                            actually put one inside an object?
+
+                            Let's use our friend example from earlier and we had a function:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                var myFriend = {
+                                    firstName: 'John',
+                                    lastName: 'Smith',
+                                    age: 27,
+                                    nationality: 'British',
+                                    sayHi: function() {
+                                      alert('Hi!');
+                                    }
+                                };
+                            </pre>
+                        </div>
+                        <p>And we add function to our object. This means that we could call it like so:
+                        </p>
+                        <div class="code_block">
+                            <pre>myFriend.sayHi()</pre>
+                        </div>
+                        <p>Look familiar? This is why console.log() is console.log()! console is an object with a log
+                            function inside of it!</p>
+                        <em>Let's dive deeper in 'this' topic</em>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="../varLetConst/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Set"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Set</strong>
+                        <p>
+                            A Set is a collection of unique values. Unlike a Map, a Set is conceptually more similar to
+                            an
+                            Array than an Object,
+                            since it is a list of values and not key/value pairs. However, Set is not a replacement for
+                            Arrays, but rather a
+                            supplement for providing additional support for working with duplicated data.
+                        </p>
+                        <p>
+                            You can initialize Sets with the new Set() syntax.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const set = new Set();
+                            
+                            // Output.......
+                            Set(0) {}
+
+                        </pre>
+                        </div>
+                        <p>
+                            Items can be added to a Set with the add() method. (This is not to be confused with the
+                            set()
+                            method available to Map,
+                            although they are similar.)
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            // Add items to a Set
+                            set.add('Beethoven')
+                            set.add('Mozart')
+                            set.add('Chopin')
+
+                            //Since Sets can only contain unique values, any attempt to add a value that already exists will be ignored.
+                            set.add('Chopin') // Set will still contain 3 unique values
+                        </pre>
+                        </div>
+                        <p>
+                            <b>
+                                Note: The same equality comparison that applies to Map keys applies to Set items. Two
+                                objects that have the same value
+                                but do not share the same reference will not be considered equal.
+                            </b>
+                        </p>
+                        <p>
+                            You can also initialize Sets with an Array of values. If there are duplicate values in the
+                            array, they will be removed
+                            from the Set.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            // Initialize a Set from an Array
+                            const set = new Set(['Beethoven', 'Mozart', 'Chopin', 'Chopin'])
+
+                            //Output......
+                            Set(3) {"Beethoven", "Mozart", "Chopin"}
+
+                        </pre>
+                        </div>
+                        <p>
+                            Set has many of the same methods and properties as Map, including delete(), has(), clear(),
+                            and
+                            size.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            // Delete an item
+                            set.delete('Beethoven') // true
+                            
+                            // Check for the existence of an item
+                            set.has('Beethoven') // false
+                            
+                            // Clear a Set
+                            set.clear()
+                            
+                            // Check the size of a Set
+                            set.size // 0
+                        </pre>
+                        </div>
+                        <p>
+                            Note that Set does not have a way to access a value by a key or index, like Map.get(key) or
+                            arr[index].
+                        </p>
+                        <strong>Keys, Values, and Entries for Sets</strong>
+                        <p>
+                            Map and Set both have keys(), values(), and entries() methods that return an Iterator.
+                            However,
+                            while each one of these
+                            methods have a distinct purpose in Map, Sets do not have keys, and therefore keys are an
+                            alias
+                            for values. This means
+                            that keys() and values() will both return the same Iterator, and entries() will return the
+                            value
+                            twice. It makes the
+                            most sense to only use values() with Set, as the other two methods exist for consistency and
+                            cross-compatibility with
+                            Map.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const set = new Set([1, 2, 3])
+                            // Get the values of a set
+                            set.values();
+
+                            // SetIterator {1, 2, 3}
+                        </pre>
+                        </div>
+                        <strong>
+                            Iteration with Set
+                        </strong>
+                        <p>
+                            Like Map, Set has a built-in forEach() method. Since Sets don't have keys, the first and
+                            second
+                            parameter of the
+                            forEach() callback return the same value, so there is no use case for it outside of
+                            compatibility with Map. The
+                            parameters of forEach() are (value, key, set).
+
+                            Both forEach() and for...of can be used on Set. First, let's look at forEach() iteration:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const set = new Set(['hi', 'hello', 'good day'])
+                            
+                            // Iterate a Set with forEach
+                            set.forEach(value => console.log(value));
+
+                            //Then we can write the for...of version:
+                            // Iterate a Set with for...of
+                            for (const value of set) {
+                                console.log(value)
+                            }
+
+                            // Both of these strategies will yield the following:
+                            // Output...... 
+                            hi
+                            hello
+                            good day
+                        </pre>
+                        </div>
+                        <strong>Set Properties and Methods</strong>
+                        <p>The following table shows a list of Set properties and methods for quick reference:</p>
+                        <table>
+                            <tr>
+                                <th>Properties/Methods</th>
+                                <th>Description</th>
+                                <th>Returns</th>
+                            </tr>
+                            <tr>
+                                <td>add(value)</td>
+                                <td>Appends a new item to a Set</td>
+                                <td>Set Object</td>
+                            </tr>
+                            <tr>
+                                <td>delete(value)</td>
+                                <td>Removes the specified item from a Set</td>
+                                <td>Boolean</td>
+                            </tr>
+                            <tr>
+                                <td>has()</td>
+                                <td>Checks for the presence of an item in a Set</td>
+                                <td>Boolean</td>
+                            </tr>
+                            <tr>
+                                <td>clear()</td>
+                                <td>Removes all items from a Set</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td>keys()</td>
+                                <td>Returns all values in a Set (same as values())</td>
+                                <td>SetIterator object</td>
+                            </tr>
+                            <tr>
+                                <td>values()</td>
+                                <td>Returns all values in a Set (same as keys())</td>
+                                <td>SetIterator object</td>
+                            </tr>
+                            <tr>
+                                <td>entries()</td>
+                                <td>Returns all values in a Set as [value, value]</td>
+                                <td>SetIterator object</td>
+                            </tr>
+                            <tr>
+                                <td>forEach()</td>
+                                <td>Iterates through the Set in insertion order</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td>size</td>
+                                <td>Returns the number of items in a Set</td>
+                                <td>Number</td>
+                            </tr>
+                        </table>
+                        <strong>When to Use Set</strong>
+                        <p>
+                            Set is a useful addition to your JavaScript toolkit, particularly for working with duplicate
+                            values in data.
+
+                            In a single line, we can create a new Array without duplicate values from an Array that has
+                            duplicate values.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            const uniqueArray = [...new Set([1, 1, 2, 2, 2, 3])] // (3) [1, 2, 3]
+                        </pre>
+                        </div>
+                        <p>
+                            Set can be used for finding the union, intersection, and difference between two sets of
+                            data.
+                            However, Arrays have a
+                            significant advantage over Sets for additional manipulation of the data due to the sort(),
+                            map(), filter(), and reduce()
+                            methods, as well as direct compatibility with JSON methods.
+                        </p>
+
+                        <strong>A cautionary note about use of Javascript's Set and Map objects</strong>
+                        <p>
+                            The problem, was JSON.stringify() and a Set contained within the object being stringified.
+                        </p>
+                        <p>
+                            For an example, I'll create a user with some "lucky numbers", which I'm just making up as an
+                            example where the entries
+                            should be unique, so a Set would (in theory) be better than an Array.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const userData = {
+                                name: 'Haleema Greer',
+                                id: 7252,
+                                luckyNumbers: new Set([55, 45, 62, 21])
+                            };
+
+                            //Looks good enough. Now, let's convert to JSON so we can send this to a server.
+
+                            JSON.stringify(userData);
+                            // "{\"name\":\"Haleema Greer\",\"id\":7252,\"luckyNumbers\":{}}"
+                        </pre>
+                        </div>
+                        <p>Apparently Set data just isn't in a format that can convert to JSON without some extra work.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            function Set_toJSON(key, value) {
+                                if (typeof value === 'object' && value instanceof Set) {
+                                    return [...value]; 
+                                }
+                                return value;
+                            }
+                            
+                            
+                            JSON.stringify(userData, Set_toJSON);
+                            
+                            // "{\"name\":\"Haleema Greer\",\"id\":7252,\"luckyNumbers\":[55,45,62,21]}"
+                        </pre>
+                        </div>
+                        <p>Much better!<br>
+
+                            Many guides will either state or imply Set can be used as a drop-in for Array, but they do
+                            not
+                            act the same and can have
+                            some unexpected consequences if you treat them the same.
+                            <br>
+                            Be aware these two types are different, and what works for one, may not work for the other.
+                        </p>
+                        <strong>Map also shares this issue as well.</strong>
+                        <div class="code_block">
+                            <pre>
+                            const userDataMap = {
+                                name: 'Haleema Greer',
+                                id: 7252,
+                                luckyNumbers: new Map([
+                                    [1, 55],
+                                    [2, 45],
+                                    [3, 62],
+                                    [4, 21]
+                                ])
+                            };
+                            
+                            JSON.stringify(userDataMap);
+                            
+                            // "{\"name\":\"Haleema Greer\",\"id\":7252,\"luckyNumbers\":{}}"
+                        </pre>
+                            <p>Fixing this isn't as straight-forward, because Map's structure doesn't directly translate
+                                to
+                                JSON. It will be a matter
+                                of how you prefer to solve the problem.</p>
+                        </div>
+                        <em>Thanks for reading....</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

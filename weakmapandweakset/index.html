@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"WeakMap and WeakSet"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>What is a WeakSet?
+                        </strong>
+                        <p>A WeakSet is similar to a Set but it can only contain Objects.</p>
+                        <div class="code_block">
+                            <pre>
+                                let dad = {name: "Daddy", age: 50};
+                                let mom = {name: "Mummy", age: 45};
+                                
+                                const family = new WeakSet([dad,mom]);
+                                
+                                for(const person of family){
+                                    console.log(person);
+                                }
+                                // TypeError: family is not iterable
+                            </pre>
+                        </div>
+                        <p>
+                            We created our new WeakSet but when we tried to use a for of loop it did not work, we can't
+                            iterate over a WeakSet.
+                        </p>
+                        <p>A WeakSet cleans itself up after we delete an element from it.</p>
+
+                        <div class="code_block">
+                            <pre>
+                                dad = null;
+                                family;
+                                // WeakSet [ {…}, {…} ]
+                                
+                                // wait a few seconds
+                                family;
+                                // WeakSet [ {…} ]
+                            </pre>
+                        </div>
+                        <p>
+                            As you can see after a few seconds dad was removed and garbage collected. That happened
+                            because the reference to it was
+                            lost when we set the value to null.
+                        </p>
+                        <strong>What is a WeakMap?</strong>
+                        <p>
+                            A WeakMap is a collection of key/value pairs and similarly to a WeakSet, even in a WeakMap
+                            the keys are weakly
+                            referenced, which means that when the reference is lost, the value will be removed from the
+                            WeakMap and garbage collected.
+                            <br>
+                            A WeakMap is not enumerable therefore we cannot loop over it.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let dad = { name: "Daddy" };
+                                let mom = { name: "Mommy" };
+                                
+                                const myMap = new Map();
+                                const myWeakMap = new WeakMap();
+                                
+                                myMap.set(dad);
+                                myWeakMap.set(mom);
+                                
+                                dad = null;
+                                mom = null;
+                                
+                                myMap;
+                                // Map(1) {{…}}
+                                myWeakMap;
+                                // WeakMap {}
+                            </pre>
+                        </div>
+                        <p>As you can see mom was garbage collected after we set the its value to null whilst dad still
+                            remains inside our Map.</p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

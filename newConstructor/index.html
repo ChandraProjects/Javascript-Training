@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Constructor"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Constructor, operator "new"</strong>
+                        <p>
+                            The regular {...} syntax allows to create one object. But often we need to create many
+                            similar objects, like multiple
+                            users or menu items and so on.
+                            <br>
+                            That can be done using constructor functions and the "new" operator.
+                        </p>
+                        <p>
+                            We can use constructor functions to make multiple similar objects.
+                        </p>
+                        <p>We have two ways to create an object.<br>
+                            But they both are regular functions in javascript..
+                        </p>
+                        <ul>
+                            <li><strong>Factory Functions</strong>
+                                <div class="code_block">
+                                    <pre>
+                                        function factoryFunction(isFactory) {
+                                            return {
+                                                isFactory, //or isFactory:isFactory
+                                                get_Factory: function () {
+                                                    console.log("From Factory Function");
+                                                }
+                                            };
+                                        }
+                                        
+                                        const __factory = factoryFunction(true);
+                                        __factory.get_Factory(); // From factory function
+                                    </pre>
+                                </div>
+                            </li>
+                            <li><strong>Constructor Functions</strong>
+                                <div class="code_block">
+                                    <pre>
+                                        function ConstructorFunction(isConstructor) {
+                                            this.isConstructor = isConst;
+                                            this.get_Constructor = function () {
+                                                console.log("From Constructor Function");
+                                            };
+                                        }
+                                        
+                                        const __constructor = new ConstructorFunction(true);
+                                        __constructor.get_Constructor(); // From Constructor Function
+                                    </pre>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>
+                            *Factory function and Constructor function. <br>
+                            *They both are regular functions in javascript. <br>
+                            *If we return an object for a function it will referes to Factory function. <br>
+                            * If we use 'this' keyword along with new Operator it will refres to Constructor
+                            function.<br>
+                        </p>
+
+                        <strong>new Operator</strong>
+                        <p>Constructor functions technically are regular functions. There are two conventions though:
+                        </p>
+                        <p>They are named with capital letter first.
+                            They should be executed only with "new" operator.</p>
+                        <p>when we add new keyword three things happen
+                        </p>
+                        <ul>
+                            <li>'new' will create a new empty Object {}</li>
+                            <li>Then it will set 'this' to point to that empty Object</li>
+                            <li>Finally the value of 'this' is returned.</li>
+                        </ul>
+                        <div class="code_block">
+                            <pre>
+                                function ConstructorFunction(isConst) {
+                                    // this = {}; (implicitly)
+                                
+                                    this.isConstructor = isConst;
+                                    this.get_Constructor = function () {
+                                        console.log("From Constructor Function");
+                                    };
+
+                                    //return this; (implicitly)
+                                }
+                            </pre>
+                        </div>
+                        <ul>
+                            <li>If we didn't use new operator 'this' will refers to global object.</li>
+                            <li>If we use new operator 'this' will refers to a particulr object</li>
+                            <li>'this' will return automatically when we use new operator</li>
+                        </ul>
+                        <p>Now if we want to create other object, we can call new ConstructorFunction(true), new
+                            ConstructorFunction(false) and so
+                            on. Much shorter than using literals every time, and also easy to read.</p>
+                        <p>That’s the main purpose of constructors – to implement reusable object creation code.</p>
+
+                        <strong>Return from constructors</strong>
+                        <p>
+                            Usually, constructors do not have a return statement. Their task is to write all necessary
+                            stuff into this, and it
+                            automatically becomes the result.
+
+                            But if there is a return statement, then the rule is simple:
+                        </p>
+                        <ul>
+                            <li>If return is called with an object, then the object is returned instead of this.</li>
+                            <li>If return is called with a primitive, it’s ignored.</li>
+                        </ul>
+                        <p>In other words, return with an object returns that object, in all other cases this is
+                            returned.
+                        </p>
+                        <p>For instance, here return overrides this by returning an object:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function returnFunction() {
+
+                                    this.name = "constructor";
+                                    return { name: "Object Returns" }; // returns this object 
+                                } 
+                                alert( new returnFunction().name ); // Object Returns
+                            </pre>
+                        </div>
+                        <P>
+                            And here’s an example with an empty return (or we could place a primitive after it, doesn’t
+                            matter):
+                        </P>
+                        <div>
+                            <pre>
+                                function SmallUser() {
+                                
+                                    this.name = "John";
+                                    return; // returns this 
+                                } 
+
+                                alert( new SmallUser().name ); // John
+                            </pre>
+                        </div>
+                        <p>Usually constructors don’t have a return statement. Here we mention the special behavior with
+                            returning objects mainly
+                            for the sake of completeness.
+                        </p>
+
+                        <strong>Methods in constructor</strong>
+                        <p>
+                            The constructor function may have parameters that define how to construct the object, and
+                            what to put in it.
+
+                            Of course, we can add to this not only properties, but methods as well.
+
+                            For instance, new User(name) below creates an object with the given name and the method
+                            sayHi:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                function User(name) {
+                                    this.name = name;
+                                    
+                                    this.sayHi = function() {
+                                        alert( "My name is: " + this.name );
+                                    };
+                                }
+                                
+                                let john = new User("John");
+                                
+                                john.sayHi(); // My name is: John
+                                
+                                /*
+                                john = {
+                                    name: "John",
+                                    sayHi: function() { ... }
+                                }
+                                */
+                            </pre>
+                        </div>
+
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

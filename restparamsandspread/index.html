@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="../varLetConst/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Rest & Spread"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Three dots "..." in JS - Spread and Rest</strong>
+                        <p>Three dots ... is one of the favorites for JavaScript developers as it has a lot of use cases
+                            which makes their life
+                            easier.<br>
+                            Well, you can see this operator in JS concepts - spread, rest. Let me make one thing clear
+                            before we begin, the syntax
+                            is the same in both but use-cases are different.
+                        </p>
+                        <strong>spread</strong>
+                        <p>The spread operator will be used to split up array elements or object properties(hence, the
+                            name spread, i.e. “spread the elements of an array/objects in a new array/objects”). Let's
+                            just understand
+                            what I just said.</p>
+                        <div class="code_block">
+                            <pre>
+                                    const newArray = [...oldArray, 1, 2]
+                                    const newObject = [...oldObject, newProp : 'a']
+                                </pre>
+                        </div>
+                        <p>You can quickly check the examples below to understand it better
+                        </p>
+                        <strong>Arrays</strong>
+                        <div class="code_block">
+                            <pre>
+                                const numbers = [1, 2, 3, 4]
+                                
+                                const numbers_with_spread = [...numbers, 5, 6]
+                                
+                                const numbers_without_spread = [numbers, 5, 6]
+                                
+                                console.log(numbers_with_spread) // [1, 2, 3, 4, 5, 6]
+                                
+                                console.log(numbers_without_spread) // [[1, 2, 3, 4], 5, 6]
+                            </pre>
+                        </div>
+                        <strong>Objects</strong>
+                        <p>Now, let's check the same with objects
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                const human = {
+                                    name : "Kedar"
+                                }
+                                
+                                const human_age_with_spread = {
+                                    ...human,
+                                    age : '21'
+                                }
+                                
+                                const human_age_without_spread = {
+                                    human,
+                                    age : '21'
+                                }
+                                
+                                
+                                console.log(human_age_with_spread) // {name: "Kedar", age: "21"}
+                                console.log(human_age_without_spread) // {age: "21" human: {name: "Kedar"}}
+                            </pre>
+                        </div>
+                        <p><b>Note: Spread syntax effectively goes one level deep while copying an array. Therefore, it
+                                may be unsuitable for copying
+                                multidimensional arrays</b></p>
+                        <strong>A better way to concatenate arrays
+                        </strong>
+                        <p>Array.prototype.concat() is often used to concatenate an array to the end of an existing
+                            array. Without spread syntax,
+                            this is done as:</p>
+                        <div class="code_block">
+                            <pre>
+                                const arr1 = [0, 1, 2];
+                                const arr2 = [3, 4, 5];
+
+                                // Append all items from arr2 onto arr1
+                                arr1 = arr1.concat(arr2);
+                            </pre>
+                        </div>
+                        <p>
+                            With spread syntax this becomes:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let arr1 = [0, 1, 2];
+                                let arr2 = [3, 4, 5];
+                                
+                                arr1 = [...arr1, ...arr2];
+                                // arr1 is now [0, 1, 2, 3, 4, 5]
+                                Note: Not to use const otherwise, it will give TypeError(invalid assignment)
+                            </pre>
+                        </div>
+                        <strong>Only for iterables</strong>
+                        <p>
+                            Objects themselves are not iterable, but they become iterable when used in an Array, or with
+                            iterating functions such as
+                            map(), reduce(), and assign(). When merging 2 objects together with the spread operator, it
+                            is assumed another iterating
+                            function is used when the merging occurs.
+
+                            Spread syntax (other than in the case of spread properties) can be applied only to iterable
+                            objects:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                const obj = {'key1': 'value1'};
+                                const array = [...obj]; // TypeError: obj is not iterable
+                            </pre>
+                        </div>
+
+                        <strong>Rest</strong>
+                        <p>we can say it's a collection remaining elements (hence, the name rest, i.e. “the rest of the
+                            elements”) in an array. Its
+                            mainly used for merging a list of functional arguments into an array i.e. you can use this
+                            when you don't know how many
+                            arguments will be passed to your method</p>
+                        <div class="code_block">
+                            <pre>
+                                const more_than_three = (...args) => {
+                                    console.log(args) // [1, 2, 3, 4, 5, 6, 7, 8]
+                                    return console.log(args.filter((x) => x > 3)) // [4, 5, 6, 7, 8]
+                                }
+                                
+                                more_than_three(1,2,3,4,5,6,7,8)
+                            </pre>
+                        </div>
+                        <p>
+                            The Rest/Spread Properties for ECMAScript proposal (ES2018) added spread properties to
+                            object literals. It copies own
+                            enumerable properties from a provided object onto a new object.
+                        </p>
+                        <p>Shallow-cloning (excluding prototype) or merging of objects is now possible using a shorter
+                            syntax than Object.assign().</p>
+                        <div class="code_block">
+                            <pre>
+                                const obj1 = { foo: 'bar', x: 42 };
+                                const obj2 = { foo: 'baz', y: 13 };
+                                
+                                const clonedObj = { ...obj1 };
+                                // Object { foo: "bar", x: 42 }
+                                
+                                const mergedObj = { ...obj1, ...obj2 };
+                                // Object { foo: "baz", x: 42, y: 13 }
+                            </pre>
+                        </div>
+                        <strong>Difference between rest parameters and the arguments object
+                        </strong>
+                        <p>There are three main differences between rest parameters and the arguments object:
+                        </p>
+                        <ul>
+                            <li>rest parameters are only the ones that haven't been given a separate name (i.e. formally
+                                defined in function
+                                expression), while the arguments object contains all arguments passed to the function;
+                            </li>
+                            <li>the arguments object is not a real array, while rest parameters are Array instances,
+                                meaning methods like sort, map,
+                                forEach or pop can be applied on it directly
+                            </li>
+                        </ul>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

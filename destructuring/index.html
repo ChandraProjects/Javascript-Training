@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="../varLetConst/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Destructuring"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Destructuring in JavaScript</strong>
+                        <p>MDN describes destructuring assignment in the following way:</p>
+                        <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to
+                            unpack values from arrays, or
+                            properties from objects, into distinct variables.</p>
+                        <p>This means that you can take an array or object, and easily pluck out values from it and
+                            assign them to variables.</p>
+                        <strong>Destructuring Assignment with Arrays</strong>
+                        <p>Let's suppose an array of three values</p>
+                        <div class="code_block">
+                            <pre>
+                                let myPointInSpace = [3, -2, 2.7];
+
+                                //The old-school way of plucking the coordinates of this point would be:
+                                
+                                let x = myPointInSpace[0];
+                                let y = myPointInSpace[1];
+                                let z = myPointInSpace[2];
+                            </pre>
+                        </div>
+                        <p>With destructuring assignment, we can shorten this to:</p>
+                        <div class="code_block">
+                            <pre>
+                                let [x, y, z] = myPointInSpace; // Pretty neat!
+                            </pre>
+                        </div>
+                        <strong>Swapping Values</strong>
+                        <p>Swapping variables' values is a somewhat common procedure, and often involves creating a
+                            temporary variable. Here's a
+                            classic example of this.</p>
+
+                        <div class="code_block">
+                            <pre>
+                                    // Initial values
+                                    let x = 5;
+                                    let y = 3;
+                                    
+                                    // Now swap, creating tmp variable
+                                    let tmp = y;
+                                    y = x;
+                                    x = tmp;
+                                    delete tmp;
+                                </pre>
+                        </div>
+                        <p>However, destructuring assignment makes this more clear, and in my opinion, a little more
+                            readable:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                // Initial values
+                                let x = 5;
+                                let y = 3;
+                                
+                                // Now swap
+                                [x, y] = [y, x];
+                            </pre>
+                        </div>
+                        <p>If you find yourself swapping variables often, destructuring can be a real nice tool.</p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
