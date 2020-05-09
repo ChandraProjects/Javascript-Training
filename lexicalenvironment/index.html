@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Lexical Environment and Closures"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Lexical Scoping</strong>
+                        <p>Before we can discuss closures, we should have a basic understanding of the scope and lexical
+                            scope. JavaScript has
+                            lexical scoping with function scope, which means each function creates a new scope.</p>
+                        <strong>What is function scope?</strong>
+                        <p>Basically, in JavaScript, there is Global Scope and Local Scope.</p>
+                        <p>
+                            <b>Global Scope:</b> There is only one Global Scope in a Javascript Document i.e. area
+                            outside all
+                            the functions and how you
+                            can identify a global scope is that the variable defined in the global scope can be accessed
+                            anywhere in the code.
+
+                            <b>Local Scope:</b> Variables declared inside functions are local to the function and is
+                            bound to
+                            the corresponding local
+                            scope. Those variables cannot be accessed outside the functions.
+                        </p>
+                        <p>Let's see an example:</p>
+                        <div class="code_block">
+                            <pre>
+                                // global scope
+                                let iHaveGlobalScope=`I can be accessed from anywhere in this document`
+
+                                function localScope(){
+                                    console.log(iHaveGlobalScope)
+
+                                    // lcoal scope1
+                                    let iHaveLocalScope=`I am bound to the local scope of function localScope`
+                                }
+
+
+                                console.log(localScope())
+                                //I can be accessed from anywhere in this document
+
+                                console.log(iHaveLocalScope)
+                                //ReferenceError: iHaveLocalScope is not defined
+                            </pre>
+                        </div>
+                        <p>The variable iHaveGlobalScope is declared in the global scope and therefore can be accessed
+                            even from within the
+                            function localScope(), but when I try to console log the variable iHaveLocalScope outside
+                            the function or outside the
+                            local scope, it throws a Reference Error at runtime.
+
+                            The local scope can be further divided into function scope and block scope. The concept of
+                            block scope was introduced in
+                            ES6 together with the new ways to declare variables — const and let.</p>
+                        <strong>Function Scope and Block Scope</strong>
+                        <p>Whenever you declare a variable inside a function, the variable is bound within the function
+                            and you can’t access it
+                            outside the function. var is the keyword to define a variable for function-scope
+                            accessibility.</p>
+                        <div class="code_block">
+                            <pre>
+                                function functionScope(){
+                                    var iHaveFunctionScope=`something something mj`
+                                    console.log(iHaveFunctionScope)
+                                }
+                                functionScope()
+                                //something something mj
+                                
+                                console.log(iHaveFunctionScope);
+                                //Reference Error
+                            </pre>
+                        </div>
+                        <p>Now, you might ask, if it gives an error even if you use let or const, why is only var
+                            associated with function scope?
+                            The thing is, let and const are used to define block scope, and before ES6, JavaScript
+                            didn't have block scope or let
+                            and const.</p>
+                        <p><b>A block scope is the area within if, switch conditions or for and while loops. Simply put
+                                , whenever you see {curly
+                                brackets}, it is a block.</b></p>
+                        <div class="code_block">
+                            <pre>
+                                function scope(){
+                                    if(true){
+                                        var scope1 =`I have function Scope`
+                                        let scope2 = `I have block scope`
+                                        const scope3 =`I also have block scope`
+                                    }
+                                    console.log(scope1)
+                                    console.log(scope2)
+                                    console.log(scope3)
+                                }
+                                scope()
+                                
+                                //I have function Scope
+                                
+                                //ReferenceError: scope2 is not defined
+                                
+                                //ReferenceError: scope3 is not defined
+                            </pre>
+                        </div>
+                        <p>Now you might expect that none of the log commands should work but as you can see that is not
+                            the case with var,
+                            variables defined with var inside if, switch conditions or for and while loops can be
+                            accessed globally and are part of
+                            global scope and hence it is better practice to use let and const with them.</p>
+                        <strong>Lexical Scope
+                        </strong>
+                        <p>
+                            Finally, we have reached the true purpose of this post. Well, I could have skipped the long
+                            discussion of scope but
+                            personally, I don’t think you can understand lexical scope without knowing the key
+                            components revolving around it.
+                            <br>
+                            Again, a point to remember: Javascript has lexical scoping with functions scope.
+                            <br>
+                            In simple words, it means the children scope has access to the variables defined in the
+                            parent scope. For instance, If I
+                            were to define a function and declare a variable inside it and inside the very same
+                            function, define another function,
+                            then I should be able to use that variable inside the inner function because of lexical
+                            scoping. Let's see an example:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function outerFunction() {
+                                    var variable1 = 'ney vatsa'
+                                    const variable2 = 'shashank jha'
+                                    let variable3 = 'huda'
+
+                                    function innerFunction() {
+                                        console.log(variable1)
+                                        console.log(variable2)
+                                        console.log(variable3)
+                                    }
+                                    innerFunction()
+                                }
+
+                                outerFunction()
+                                // ney vatsa
+                                //shashank jha
+                                //huda
+                            </pre>
+                        </div>
+                        <p>
+                            It can be seen from the example, the variables declared in outerFunction() are accessed by
+                            innerfunction(), this is
+                            lexical scoping.
+
+                            The scope of variables is defined by their position in the code. In order to resolve
+                            variables, JavaScript starts at the
+                            innermost scope and searches outwards until it finds the variable it was looking for. In the
+                            above example, Javascript
+                            first searches for variables inside innerFunction() and when it doesn’t find it, it goes
+                            outside i.e outerFunction()
+
+                            Lexical scoping is better because we can easily figure out the value of a variable from the
+                            code, whereas in dynamic
+                            scoping, the meaning of a variable can change at runtime, which makes it complex to
+                            understand.
+                        </p>
+                        <p>
+                            So, we have successfully understood what lexical scoping is, now let’s look at closures
+                            where lexical scoping is
+                            actually used.
+                        </p>
+                        <strong>Closures</strong>
+                        <p>
+                            According to the Mozilla Development Network(MDN) :
+
+                            “A closure is a special kind of object that combines two things: a function, and the
+                            environment in which that function
+                            was created. The environment consists of any local variables that were in-scope at the time
+                            that the closure was
+                            created.”
+                        </p>
+                        <p>
+                            First, let's look at a simple example to start:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                var outerFunction = function () {
+                                    let variable1 = "Example of closure"
+                                    
+                                    var innerFunction = function () {
+                                        console.log(variable1)
+                                    }
+                                    return innerFunction;
+                                }
+                                
+                                var newFunction = outerFunction()
+                                newFunction()
+                                //Example of closure
+                            </pre>
+                        </div>
+                        <p>
+                            The main point to think here is outerFunction() returns innerFunction() , so the
+                            newFunction() is in fact
+                            innerFunction(), but we didn’t return variable1. Still, it is a part of newFunction(), so
+                            where does the value of
+                            variable1 comes from if outerFunction() is already returned i.e. finished executing.
+                        </p>
+                        <p>
+                            This accessing of a variable outside the immediate scope will give rise to a closure.
+                        </p>
+                        <p>
+                            Since variable1 was part of the lexical environment that created innerFunction(),
+                            innerFunction() will have access to
+                            it.
+                            <br>
+                            Let's look at another example:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function add(x) {
+                                    return function(y) {
+                                        return x + y;
+                                    };
+                                }
+                                
+                                var addFive = add(5);
+                                var addTen = add(10);
+                                
+                                console.log(addFive(10)); // 15
+                                console.log(addTen(10)); // 20
+                            </pre>
+                        </div>
+                        <p>
+                            Just FYI, this is a widely used example for closure and you may find it many tutorials, here
+                            we have defined the
+                            function add() with a parameter x which returns another function with parameter y, which
+                            returns the sum of x and y.
+                            <br>
+                            Now we create new functions addFive() and addTen(), by passing arguments inside add()
+                            function, these addTen() and
+                            addFive() are actually closures, and although they have the same function body definition,
+                            they store different lexical
+                            environments. In addFive() lexical environment, x is five, while in the lexical environment
+                            for addTen(), x is ten.
+                            <br>
+                            Closures are a very important part of programming, not only in JavaScript but in all
+                            programming languages. They have so
+                            many practical applications like object data privacy, event handlers and callback functions,
+                            and other functional
+                            programming patterns.
+                        </p>
+                        <p>
+                            I hope by now you have a basic understanding of scope in JavaScript, we have covered a brief
+                            introduction to lexical
+                            scoping and closures in this post.
+                        </p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Function object, NFE"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <p>As we already know, a function in JavaScript is a value.
+
+                            Every value in JavaScript has a type. What type is a function?
+
+                            In JavaScript, functions are objects.
+
+                            A good way to imagine functions is as callable “action objects”. We can not only call them,
+                            but also treat them as
+                            objects: add/remove properties, pass by reference etc.</p>
+                        <strong>The “name” property</strong>
+                        <p>
+                            Function objects contain some useable properties.
+
+                            For instance, a function’s name is accessible as the “name” property:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function sayHi() {
+                                    alert("Hi");
+                                }
+                                
+                                alert(sayHi.name); // sayHi
+                            </pre>
+                        </div>
+                        <p>What’s kind of funny, the name-assigning logic is smart. It also assigns the correct name to
+                            a function even if it’s
+                            created without one, and then immediately assigned:</p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function() {
+                                    alert("Hi");
+                                };
+                                
+                                alert(sayHi.name); // sayHi (there's a name!)
+
+                                //It also works if the assignment is done via a default value:
+                                
+                                function f(sayHi = function() {}) {
+                                    alert(sayHi.name); // sayHi (works!)
+                                }
+
+                                f();
+                            </pre>
+                        </div>
+                        <p>
+                            In the specification, this feature is called a “contextual name”. If the function does not
+                            provide one, then in an
+                            assignment it is figured out from the context.
+
+                            Object methods have names too:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let user = {
+                                
+                                    sayHi() {
+                                        // ...
+                                    },
+                                
+                                    sayBye: function() {
+                                        // ...
+                                    }
+                                
+                                }
+                                
+                                alert(user.sayHi.name); // sayHi
+                                alert(user.sayBye.name); // sayBye
+                            </pre>
+                        </div>
+                        <p>
+                            There’s no magic though. There are cases when there’s no way to figure out the right name.
+                            In that case, the name
+                            property is empty, like here:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                // function created inside array
+                                let arr = [function() {}];
+                                
+                                alert( arr[0].name ); // <empty string>
+                                    // the engine has no way to set up the right name, so there is none
+                            </pre>
+                            <p>In practice, however, most functions do have a name.
+                            </p>
+                        </div>
+                        <strong>The “length” property</strong>
+                        <p>There is another built-in property “length” that returns the number of function parameters,
+                            for instance:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function f1(a) {}
+                                function f2(a, b) {}
+                                function many(a, b, ...more) {}
+                                
+                                alert(f1.length); // 1
+                                alert(f2.length); // 2
+                                alert(many.length); // 2
+                            </pre>
+                        </div>
+                        <p>
+                            Here we can see that rest parameters are not counted.
+
+                            The length property is sometimes used for introspection in functions that operate on other
+                            functions.
+                            <br>
+                            For instance, in the code below the ask function accepts a question to ask and an arbitrary
+                            number of handler functions
+                            to call.
+                            <br>
+                            Once a user provides their answer, the function calls the handlers. We can pass two kinds of
+                            handlers:
+                        </p>
+                        <ul>
+                            <li>A zero-argument function, which is only called when the user gives a positive answer.
+                            </li>
+                            <li>A function with arguments, which is called in either case and returns an answer.</li>
+                        </ul>
+
+                        <strong>Named Function Expression</strong>
+                        <p>Named Function Expression, or NFE, is a term for Function Expressions that have a name.
+
+                            For instance, let’s take an ordinary Function Expression:</p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function(who) {
+                                    alert(`Hello, ${who}`);
+                                };  
+
+                                //And add a name to it:
+                                let sayHi = function func(who) {
+                                    alert(`Hello, ${who}`);
+                                };
+                            </pre>
+                        </div>
+                        <p>
+                            Did we achieve anything here? What’s the purpose of that additional "func" name?
+
+                            First let’s note, that we still have a Function Expression. Adding the name "func" after
+                            function did not make it a
+                            Function Declaration, because it is still created as a part of an assignment expression.
+
+                            Adding such a name also did not break anything.
+
+                            The function is still available as sayHi():
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function func(who) {
+                                    alert(`Hello, ${who}`);
+                                };
+                                
+                                sayHi("John"); // Hello, John
+                            </pre>
+                        </div>
+                        <p>
+                            There are two special things about the name func, that are the reasons for it:
+
+                            * It allows the function to reference itself internally.
+                            * It is not visible outside of the function.
+                            <br>
+                            For instance, the function sayHi below calls itself again with "Guest" if no who is
+                            provided:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function func(who) {
+                                    if (who) {
+                                        alert(`Hello, ${who}`);
+                                    } else {
+                                    func("Guest"); // use func to re-call itself
+                                    }
+                                };
+
+                                sayHi(); // Hello, Guest
+
+                                // But this won't work:
+                                func(); // Error, func is not defined (not visible outside of the function)
+                            </pre>
+                        </div>
+                        <p>Why do we use func? Maybe just use sayHi for the nested call?
+
+                            Actually, in most cases we can:</p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function(who) {
+                                    if (who) {
+                                        alert(`Hello, ${who}`);
+                                    } else {
+                                        sayHi("Guest");
+                                    }
+                                };
+                            </pre>
+                        </div>
+                        <p>
+                            The problem with that code is that sayHi may change in the outer code. If the function gets
+                            assigned to another variable
+                            instead, the code will start to give errors:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function(who) {
+                                    if (who) {
+                                        alert(`Hello, ${who}`);
+                                    } else {
+                                        sayHi("Guest"); // Error: sayHi is not a function
+                                    }
+                                };
+                                
+                                let welcome = sayHi;
+                                sayHi = null;
+                                
+                                welcome(); // Error, the nested sayHi call doesn't work any more!
+                            </pre>
+                        </div>
+                        <p>
+                            That happens because the function takes sayHi from its outer lexical environment. There’s no
+                            local sayHi, so the outer
+                            variable is used. And at the moment of the call that outer sayHi is null.
+
+                            The optional name which we can put into the Function Expression is meant to solve exactly
+                            these kinds of problems.
+                            <br>
+                            Let’s use it to fix our code:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                let sayHi = function func(who) {
+                                    if (who) {
+                                        alert(`Hello, ${who}`);
+                                    } else {
+                                        func("Guest"); // Now all fine
+                                    }
+                                };
+                                
+                                let welcome = sayHi;
+                                sayHi = null;
+                                
+                                welcome(); // Hello, Guest (nested call works)
+                            </pre>
+                        </div>
+                        <p>Now it works, because the name "func" is function-local. It is not taken from outside (and
+                            not visible there). The
+                            specification guarantees that it will always reference the current function.
+
+                            The outer code still has it’s variable sayHi or welcome. And func is an “internal function
+                            name”, how the function can
+                            call itself internally.</p>
+                        <strong>Recap</strong>
+                        <p>
+                            Functions are objects.
+                            <br>
+                            Here we covered their properties:
+                            <br>
+                            * name – the function name. Usually taken from the function definition, but if there’s none,
+                            JavaScript tries to guess it
+                            from the context (e.g. an assignment).
+                            <br>
+                            * length – the number of arguments in the function definition. Rest parameters are not
+                            counted.
+                            <br>
+                            If the function is declared as a Function Expression (not in the main code flow), and it
+                            carries the name, then it is
+                            called a Named Function Expression. The name can be used inside to reference itself, for
+                            recursive calls or such.
+                            <br>
+                            Also, functions may carry additional properties. Many well-known JavaScript libraries make
+                            great use of this feature.
+                            <br>
+                            They create a “main” function and attach many other “helper” functions to it. For instance,
+                            the jQuery library creates a
+                            function named $. The lodash library creates a function _, and then adds _.clone, _.keyBy
+                            and other properties to it
+                            (see the docs when you want learn more about them). Actually, they do it to lessen their
+                            pollution of the global space,
+                            so that a single library gives only one global variable. That reduces the possibility of
+                            naming conflicts.
+                            <br>
+                            So, a function can do a useful job by itself and also carry a bunch of other functionality
+                            in properties.
+                        </p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

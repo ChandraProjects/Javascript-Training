@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Preparation</title>
+
+    <link rel="stylesheet" href="../variables/variables.css">
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Inheritance"</span></h4>
+            </div>
+
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Inheritance in Javascript</strong>
+                        <p>
+                            I recommend reading <a target="_blank" href="../prototypes/index.html">this article</a> to
+                            have a thorough
+                            understanding of Prototypes in
+                            JavaScript.
+                        </p>
+                        <strong>
+                            Prototype Chaining
+                        </strong>
+                        <p>
+                            Prototype chaining means an object’s dunder proto or proto property will point to another
+                            object instead of pointing to
+                            the constructor function prototype. If the other object’s dunder proto or proto property
+                            points to another object it
+                            will result in the chain. This is called Prototype Chaining.<br>
+                            As shown in the below image, SubType object’s prototype property points to SuperType object.
+                            SuperType object’s
+                            prototype property points to the SuperSuperType object. This is called prototype chaining
+                        </p>
+                        <img src="../assets//protoChaining.png" alt="prototype chaining">
+                        <p>
+                            Let’s implement prototype chaining
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                //SuperType constructor function
+                                function SuperType(){
+                                    this.name = "Virat"
+                                }
+                                
+                                //SuperType prototype
+                                SuperType.prototype.getSuperName = function(){
+                                    return this.name
+                                }
+                                
+                                //SubType prototype function
+                                function SubType(){
+                                    this.age = 26
+                                }
+                                
+                                //Inherit the properties from SuperType
+                                SubType.prototype = new SuperType();
+                                
+                                //Add new property to SubType prototype
+                                SubType.prototype.getSubAge = function(){
+                                    return this.age;
+                                }
+                                
+                                //Create a SubType object
+                                var subTypeObj = new SubType();
+                                console.log(subTypeObj.name); //Output: Virat
+                                console.log(subTypeObj.age); //Output: 26
+                                console.log(subTypeObj.getSuperName()); //Output: Virat
+                                console.log(subTypeObj.getSubAge()); //Output: 26
+                            </pre>
+                        </div>
+                        <img src="../assets/chaining.png" alt="chaingin">
+                        <p>Above code defines two constructor functions, SuperType and SubType. By default,
+                            SubType.prototype has a constructor
+                            function which points to the constructor function itself and proto property which inherits
+                            the default object
+                            properties.</p>
+                        <div class="code_block">
+                            <pre>
+                                //Inherit the properties from SuperType
+                                SubType.prototype = new SuperType();
+                            </pre>
+                        </div>
+                        <p>
+                            Above line rewrites the default prototype or the dunder proto property of the SubType
+                            constructor function and makes
+                            SubType.prototype to point to an object of SuperType constructor function.
+                            This means that all the properties and methods that exist on an instance of SuperType will
+                            now exist on
+                            SubType.prototype also. This means that now, SubType function has access to all the
+                            SuperType properties and methods.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                //Add new property to SubType prototype
+                                SubType.prototype.getSubAge = function(){
+                                    return this.age;
+                                }
+                            </pre>
+                        </div>
+                        <p>
+                            After the default prototype of SubType constructor function has been overwritten, by using
+                            the above line of code we add
+                            a new method getSubAge() on top of what was inherited from SuperType, to the prototype
+                            object of SubType constructor
+                            function.<br>
+                            <b>Note: New methods must be added to the SubType after the inheritance because inheritance
+                                overwrites the existing
+                                prototype of SubType.</b>
+                        </p>
+                        <img src="../assets/superType.png" alt="supertype">
+                        <img src="../assets/subtypeproto.png" alt="subtype">
+                        <img src="../assets/subtypeconst.png" alt="supercont">
+
+                        <p><b>Note: getSuperName() method remains on the SuperType.prototype object, but name property
+                                ends
+                                up on SubType.prototype.
+                                That’s because getSuperName() is a prototype method, and the property is an instance
+                                property. SubType.prototype is now
+                                an instance of SuperType, so the property is stored there. Also note that
+                                SubType.prototype.constructor points to
+                                SuperType, because the constructor property on the SubType.prototype was
+                                overwritten.</b>
+                        </p>
+                        <strong>Problems with prototype chaining</strong>
+                        <p>
+                            As all the properties of the super type prototype are shared among the child objects, if one
+                            child modifies the property
+                            of the super type prototype, other children also get affected. This issue has been explained
+                            in
+                            great details <a target="_blank" href="../prototypes/index.html">here</a>
+                            To fix this issue, we use the constructor to inherit the instance properties and prototype
+                            chaining to inherit methods
+                            and share properties
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            //SuperType constructor function
+                            function SuperType(firstName, lastName){
+                                this.firstName = firstName,
+                                this.lastName = lastName,
+                                this.friends = ["Ashwin", "Jadeja"]
+                            }
+                            
+                            //SuperType prototype
+                            SuperType.prototype.getSuperName = function(){
+                                return this.firstName + " " + this.lastName;
+                            }
+                            
+                            //SubType prototype function
+                            function SubType(firstName, lastName, age){
+                                //Inherit instance properties
+                                SuperType.call(this, firstName, lastName);
+                                this.age = age;
+                            }
+                            
+                            //Inherit methods and shared properties
+                            SubType.prototype = new SuperType();
+                            
+                            //Add new property to SubType prototype
+                            SubType.prototype.getSubAge = function(){
+                                return this.age;
+                            }
+                            
+                            //Create SubType objects
+                            var subTypeObj1= new SubType("Virat", "Kohli", 26);
+                            var subTypeObj2 = new SubType("Sachin", "Tendulkar", 39);
+                            
+                            //Modify the friends property using the subTypeObj1
+                            subTypeObj1.friends.push("Amit");
+                            
+                            console.log(subTypeObj1.friends);//["Ahswin", "Jadega", "Amit"]
+                            console.log(subTypeObj2.friends);//["Ashwin", "Jadega"]
+                            
+                            //subTypeObj1
+                            console.log(subTypeObj1.firstName); //Output: Virat
+                            console.log(subTypeObj1.age); //Output: 26
+                            console.log(subTypeObj1.getSuperName()); //Output: Virat Kohli
+                            console.log(subTypeObj1.getSubAge()); //Output: 26
+                            
+                            //subTypeObj2
+                            console.log(subTypeObj2.firstName); //Output: Sachin
+                            console.log(subTypeObj2.age); //Output: 39
+                            console.log(subTypeObj2.getSuperName()); //Output: Sachin Tendulkar
+                            console.log(subTypeObj2.getSubAge()); //Output: 39
+                        </pre>
+                        </div>
+                        <p>
+                            Let’s try to understand the code, we have defined a SuperType constructor function with
+                            firstName, lastName, and friends
+                            as instance properties, then we have defined a superName property on the prototype of
+                            SuperType.
+                            Now, let’s look at how we have defined the SubType constructor function
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            //SubType prototype function
+                            function SubType(firstName, lastName, age){
+                                //Inherit instance properties
+                                SuperType.call(this, firstname, lastName);
+                                this.age = age;
+                            }
+                        </pre>
+                        </div>
+                        <p>
+                            Here, we define a SubType constructor function. Inside the SubType constructor function, we
+                            call
+                            the SuperType
+                            constructor function with call. Call executes the SuperType constructor function in the
+                            context
+                            of the object being
+                            created using the SubType constructor function. After inheriting the instance properties of
+                            the
+                            SuperType, we add one
+                            age property to the SubType constructor function
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                //Inherit methods and shared properties
+                                SubType.prototype = new SuperType();
+                            </pre>
+                        </div>
+                        <p>
+                            So far we have just inherited all the instance properties of the SuperType constructor
+                            function,
+                            but
+                            the shared
+                            properties and methods of the SuperType constructor function is still not inherited. We
+                            inherit
+                            them
+                            using the above
+                            lines of code.
+                            Once the above lines of code are executed, we have inherited all the properties of the
+                            SuperType
+                            constructor function
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                //Add new property to SubType prototype
+                                SubType.prototype.getSubAge = function(){
+                                    return this.age;
+                                }
+                                >Using the above lines of code, we add a new property to SubType prototype on top of the methods and properties
+                                inherited
+                                >from the SuperType constructor function
+                                
+                                >Let's understand the whole process by creating an object using SubType constructor function
+                                ```javascript
+                                var subTypeObj1= new SubType("Virat", "Kohli", 26);
+                            </pre>
+                        </div>
+                        <p>
+                            When we execute the above line of code, all the three parameters (Virat, Kohli and 26) are
+                            passed to
+                            the SubType
+                            constructor function. SubType constructor function then calls SuperType constructor function
+                            using
+                            call
+                            SuperType.call(this, firstname, lastName) this here represent the subTypeObj1
+                            SuperType constructor function is executed in the context of subTypeObj1 and add properties
+                            firstName, lastName, friends
+                            to the subTypeObj1 object After the return of SuperType.call(this, firstname, lastName),
+                            SubType
+                            constructor function
+                            adds a age property to subTypeObj1 object.<br>
+                            Thus as of now, there are properties with the subTypeObj1 object (firstName, lastName, and
+                            age).
+                            Currently, SubType
+                            constructor function has the following methods and shared properties in its prototype
+                            property:
+                        </p>
+                        <ul>
+                            <li>
+                                getSuperName()
+                            </li>
+                            <li>
+                                getSubAge
+                            </li>
+                        </ul>
+                        <p>
+                            subTypeObj1 inherits all these properties from SubType constructor function.
+                        </p>
+                        <img src="../assets/subtypeObjLog.png" alt="subtype">
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

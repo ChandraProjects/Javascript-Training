@@ -65,12 +65,12 @@
             "url": "this/index.html"
         },
         {
-            "title": "Object to primitive conversion",
-            "url": ""
+            "title": "Prototypes",
+            "url": "prototypes/index.html"
         },
         {
-            "title": "Prototypes and Inheritance",
-            "url": ""
+            "title": "Inheritance ",
+            "url": "inheritance/index.html"
         }
     ],
     "Advanced Functions": [
@@ -79,16 +79,12 @@
             "url": "restparamsandspread/index.html"
         },
         {
-            "title": "Global Object",
-            "url": ""
+            "title": "Lexical Environment and Closures",
+            "url": "lexicalenvironment/index.html"
         },
         {
             "title": "Function object, NFE",
-            "url": ""
-        },
-        {
-            "title": "SetTimeout and SetInterval",
-            "url": ""
+            "url": "nfe/index.html"
         },
         {
             "title": "Call,Apply and Bind",
