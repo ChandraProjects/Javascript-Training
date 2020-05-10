@@ -1,0 +1,199 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Classes"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <p>
+                            <b>The most important thing to remember:</b> Classes are just normal JavaScript functions
+                            and could be completely replicated
+                            without using the class syntax. It is special syntactic sugar added in ES6 to make it easier
+                            to declare and inherit
+                            complex objects.
+                        </p>
+                        <strong>Defining Classes</strong>
+                        <p>To declare a class, we use the class keyword. For example, to declare a simple class, we can
+                            write:</p>
+                        <div class="code_block">
+                            <pre>
+                                class Person{
+                                    constructor(firstName, lastName) {
+                                    this.firstName= firstName;
+                                        this.lastName = lastName;
+                                    }
+                                }
+                            </pre>
+                        </div>
+                        <p>Class declarations aren’t hoisted so they can’t be used before they are defined in the code,
+                            as the JavaScript
+                            interpreter will not automatically pull them up to the top. So the class above won’t work
+                            before it’s defined in the
+                            code like the following:</p>
+
+                        <div class="code_block">
+                            <pre>
+                                const person = new Person('John', 'Smith');
+                                
+                                class Person{
+                                    constructor(firstName, lastName) {
+                                        this.firstName = firstName;
+                                        this.lastName = lastName;
+                                    }
+                                }
+
+                                //We will get a ReferenceError if we run this code above.
+                            </pre>
+                        </div>
+                        <p>
+                            We can also define a class by a class expression, which is an alternative syntax. They can
+                            be named or unnamed. We can
+                            also assign a class to a variable like we do with functions. If we do that, we can reference
+                            the class by its name. For
+                            example, we can define:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                let Person = class {
+                                    constructor(firstName, lastName) {
+                                        this.firstName = firstName;
+                                        this.lastName = lastName;
+                                    }
+                                }
+                            </pre>
+                        </div>
+                        <p>To get the name of the unnamed classes above, we can get the name with the name property,
+                            like so:</p>
+                        <div class="code_block">
+                            <pre>
+                                console.log(Person.name);
+                            </pre>
+                        </div>
+                        <p>We can also define a named class like the following:</p>
+
+                        <div class="code_block">
+                            <pre>
+                                let Person = class Person2 {
+                                    constructor(firstName, lastName) {
+                                        this.firstName = firstName;
+                                        this.lastName = lastName;
+                                    }
+                                }
+
+                                // Then to get the name of the class, we can use the name property again. So we if we write:
+                                console.log(Person.name);
+                            </pre>
+                        </div>
+                        <p>We get Person2 logged.
+                        </p>
+
+                        <p>
+                            The class body is defined with curly brackets. We define the class members inside the
+                            brackets. The body of the class is
+                            executed in strict mode, so everything defined in strict mode applies to the definition of a
+                            class, so we can’t define
+                            variables without keyword before it like var , let or const, and many other rules apply when
+                            you define a class.
+                        </p>
+
+                        <p>Classes in JavaScript also have a constructor method that lets us set fields when the object
+                            is instantiated with a
+                            class. Each class can only have one constructor method in it. If there’s more than one, then
+                            SyntaxError will be thrown.
+                            A constructor can also call the super method to call the constructor of the super class if
+                            the class extends a parent
+                            class.</p>
+
+                        <p>
+                            Methods that aren’t declared static constitutes the prototypical methods of the class. They
+                            are called after an object
+                            has been created by using the new keyword. For example, the following class has only
+                            prototypical methods:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                class Person{
+                                    constructor(firstName, lastName) {
+                                        this.firstName = firstName;
+                                        this.lastName = lastName;
+                                    }
+
+                                    get fullName(){
+                                        return `${this.firstName} ${this.lastName}`
+                                    }
+                                    sayHi(){
+                                        return `Hi, ${this.firstName} ${this.lastName}`
+                                    }
+                                }
+                            </pre>
+                        </div>
+
+                        <p>In the Person class above, fullName and sayHi are prototypical methods. They are called like
+                            this:</p>
+
+                        <div class="code_block">
+                            <pre>
+                                const person = new Person('Jane', 'Smith');
+                                person.fullName() // 'Jane Smith'
+                            </pre>
+                        </div>
+                        <p>
+                            Static methods are methods that can be called without creating an object from the class
+                            using the new keyword. For
+                            instance, we can have something like the following:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                class Person {
+                                    constructor(firstName, lastName) {
+                                        this.firstName = firstName;
+                                        this.lastName = lastName;
+                                    }
+                                    get fullName() {
+                                        return `${this.firstName} ${this.lastName}`
+                                    }
+                                    sayHi() {
+                                        return `Hi, ${this.firstName} ${this.lastName}`
+                                    }
+                                    static personCount() {
+                                        return 3;
+                                    }
+                                }
+                            </pre>
+                        </div>
+                        <p>We can call the personCount function without using the new keyword to create an instance of
+                            the class. So if we write:</p>
+
+                        <div class="code_block">
+                            <pre>Person.personCount // 3</pre>
+                        </div>
+                        <p>
+                            The this value inside prototypical methods will be the value of the object. For static
+                            methods the value of this has the
+                            class that the static method is in as the value.
+                        </p>
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

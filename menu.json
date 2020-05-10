@@ -88,43 +88,43 @@
         },
         {
             "title": "Call,Apply and Bind",
-            "url": ""
+            "url": "callapplybind/index.html"
         }
     ],
     "Classes": [
         {
             "title": "Class basic syntax",
-            "url": ""
+            "url": "classBasics/index.html"
+        },
+        {
+            "title": "Getters and Setters",
+            "url": "getset/index.html"
         },
         {
             "title": "Class inheritance",
-            "url": ""
+            "url": "classInherit/index.html"
         },
         {
-            "title": "Static properties and methods",
-            "url": ""
-        },
-        {
-            "title": "Instanceof",
-            "url": ""
+            "title": "Mixins",
+            "url": "mixins/index.html"
         }
     ],
     "Promises, async/await": [
         {
             "title": "Callbacks",
-            "url": ""
+            "url": "callbacks/index.html"
         },
         {
-            "title": "Promise & Promises chaining",
-            "url": ""
-        },
-        {
-            "title": "Error handling with promises",
-            "url": ""
+            "title": "Promises",
+            "url": "promises/index.html"
         },
         {
             "title": "Async/await",
-            "url": ""
+            "url": "asyncawait/index.html"
+        },
+        {
+            "title": "Async/await in loops",
+            "url": "asyncawaitloops/index.html"
         }
     ]
 }

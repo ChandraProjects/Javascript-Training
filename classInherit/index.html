@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Class Inheritance"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Javascript Inheritance
+                        </strong>
+                        <p>In JavaScript, we can create classes where the properties can be included in the properties
+                            of a child class.
+                        </p>
+                        <p>
+                            So, we can have a high-level class that contains the properties that are common to all the
+                            child classes, and the child
+                            class can have its own special properties that are not in any other classes.</p>
+
+                        <p>For example, if we have an Animal class with the common properties and methods, like name
+                            and the eat method, then the
+                            Bird class can just inherit the common properties in the Animal class. They don’t have to be
+                            defined in the Bird class
+                            again.
+                        </p>
+                        <p>We can write the following to do inheritance in JavaScript:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                class Animal {
+                                    constructor(name) {
+                                        this.name = name;
+                                    }
+                                    eat() {
+                                        console.log('eat');
+                                    }
+                                }
+
+                                class Bird extends Animal {
+                                    constructor(name, numWings) {
+                                        super(name);
+                                        this.numWings = numWings;
+                                    }
+                                }
+
+                                const bird = new Bird('Joe', 2);
+                                console.log(bird.name)
+                                bird.eat();
+                            </pre>
+                        </div>
+                        <p>In the example above, we have the parent class, Animal, that has the eat method, which all
+                            classes that extends from
+                            Animal will have, so they don’t have to define eat again.</p>
+
+                        <p>
+                            We have the Bird class which extends the Animal class. Note that in the constructor of the
+                            Bird class, we have the
+                            super() function call to call the parent’s class constructor to populate the properties of
+                            the parent class in addition
+                            to the properties of the child class.
+                        </p>
+                        <p>
+                            Classes cannot extend regular objects, which cannot be constructed with the new keyword. If
+                            we want to inherit from a
+                            regular object, we have to use the Object.setPrototypeOf function to set a class to inherit
+                            from a regular object. For
+                            example:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                const Animal = {
+                                    eat() {
+                                        console.log(`${this.name} eats`);
+                                    }
+                                };
+
+                                class Cat{
+                                    constructor(name) {
+                                        this.name = name;
+                                    }
+                                }
+
+                                class Chicken{
+                                    constructor(name) {
+                                        this.name = name;
+                                    }
+                                }
+
+                                Object.setPrototypeOf(Cat.prototype, Animal);
+                                Object.setPrototypeOf(Chicken.prototype, Animal);
+
+                                let cat = new Cat('Bob');
+                                let chicken = new Chicken('Joe');
+                                cat.eat();
+                                chicken.eat();
+                            </pre>
+                        </div>
+
+                        <p>If we run the example code above, we can see Bob eats and Joe eats logged because we have
+                            inherited the eat function
+                            from the Animal object.</p>
+
+                        <strong>'this' Keyword
+                        </strong>
+
+                        <p>
+                            The this keyword allows us to access the current object’s properties inside the object,
+                            unless you’re using arrow
+                            functions.
+                            <br>
+                            As we can see from the above example, we can get the properties of the instance of the child
+                            and the parent class in the
+                            object.
+                        </p>
+
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

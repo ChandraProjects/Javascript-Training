@@ -1,0 +1,114 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Promises"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Promises?</strong>
+                        <p>
+                            Basically, Promises were made to create better asynchronous callback functions in
+                            Javascript, to make the code better
+                            organized. To grasp the concept think like it literally means that we are making a promise
+                            in real life. For example:
+                        </p>
+                        <li>I promise that I will make you understand Promises in 15 minutes.
+                        </li>
+                        <p>For that promise, I can do two things:
+                        </p>
+                        <li>I can either succeed by making you understand Promises in 15 minutes.
+                        </li>
+                        <li>Or I can fail and you'll not understand Promises in 15 minutes.</li>
+                        <p>In code, it's the very same thing. Ok, so let's see this.
+                        </p>
+                        <img src="../assets/promise.png">
+
+                        <p>The output for this script is: This is in then: success
+                        </p>
+
+                        <p>Here, we have a block inside of a Promise function that sums 1 + 1. If the result is 2, it
+                            means that our promise
+                            succeded, otherwise, means that our promise was rejected, because 1 + 1 = 2. If we change
+                            the number of the sum, we'll
+                            be rejected because we're saying that the variable of the sum is 2. If it isn't, promise
+                            rejected.</p>
+
+                        <img src="../assets/promisefailed.png">
+                        <p>The output for this script is: This is in catch: failed.
+                        </p>
+                        <p>Now let's analyze this code
+                        </p>
+
+                        <img src="../assets/promise2.png">
+                        <p>This code sees if you're using Angular or Vue, if one of those is true, it calls a callback
+                            function which sends an
+                            alert with a title and a message.
+                            <br> Output form above example: angular, eww
+                        </p>
+
+                        <p>Now let's change this to a Promise and make this code better.
+                        </p>
+
+                        <p>
+                            First, we create a function that instantiates a Promise, passing our parameters resolve and
+                            reject. Then, we write the
+                            code that we want to be in that Promise, in my case, I want to ensure that developers are
+                            using
+                            the React lib. So I make
+                            the validation and dispatch the action that I want to execute when the promise resolves and
+                            when
+                            the promise rejects.
+                            Like this:
+                        </p>
+                        <img src="../assets/promiseex.png">
+
+                        <p>
+                            After that, I write the then function calling my Promise and I can do whatever I want in
+                            that block. When that Promise
+                            is completed, I want to log a message in my console both when I have a resolution or
+                            rejection. In the THEN block is the
+                            code that runs when my promise is Resolved, and in the CATCH block, the one which runs when
+                            my promise is rejected.
+                        </p>
+                        <img src="../assets/promiseThen.png">
+                        <img src="../assets/promiseThenExample.png">
+
+                        <p>Also, we can make simultaneous Promises using Promise.ALL when we need to make two or more
+                            Promises at the same time.
+                        </p>
+
+                        <img src="../assets/promiseAll.png">
+                        <p>The output is going to be: Success! Im the first request , Im the second request
+                        </p>
+
+                        <p>Or use Promise.RACE if we need to get the result of the first Promise that executes and
+                            ignore the upcoming promises.
+                        </p>
+
+                        <img src="../assets/promiseRace.png">
+                        <p>The output is going to be: Success! Im the first request</p>
+
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

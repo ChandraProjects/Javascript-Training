@@ -1,0 +1,396 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Async and Await"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>JavaScript async and await</strong>
+                        <p>Asynchronous JavaScript has never been easy. For a while, we used callbacks. Then, we used
+                            promises. And now, we have
+                            asynchronous functions.
+                        </p>
+                        <p>
+                            Asynchronous functions make it easier to write asynchronous JavaScript, but it comes with
+                            its own set of gotchas that
+                            makes life hard for beginners.
+                        </p>
+
+                        <strong>Asynchronous functions</strong>
+                        <p>Asynchronous functions contains the async keyword. You can use it in a normal function
+                            declaration:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                async function functionName (arguments) {
+                                // Do something asynchronous
+                                }
+
+                                // You can also use it in an arrow-function.
+                                const functionName = async (arguments) => {
+                                // Do something asynchronous
+                                }
+                            </pre>
+                        </div>
+
+                        <strong>
+                            Asynchronous functions always return promises
+                        </strong>
+                        <p>It doesn't matter what you return. The returned value will always be a promise.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                const getOne = async _ => {
+                                    return 1
+                                }
+                                
+                                const promise = getOne()
+                                console.log(promise) // Promise
+                            </pre>
+                        </div>
+                        <p>
+                            Note: You should know what are JavaScript Promises and how to use them before you move on.
+                            Otherwise, it'll start to get
+                            confusing. Use this <a target="_blank" href="../promises/index.html">article</a> to help you
+                            get familiar with JavaScript promises.
+                        </p>
+                        <strong>The await keyword
+                        </strong>
+                        <p>When you call a promise, you handle the next step in a then call, like this:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                const getOne = async _ => {
+                                    return 1
+                                }
+                                
+                                getOne()
+                                    .then(value => {
+                                    console.log(value) // 1
+                                })
+                            </pre>
+                        </div>
+                        <p>The await keyword lets you wait for the promise to resolve. Once the promise is resolved, it
+                            returns the parameter
+                            passed into the then call.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                const test = async _ => {
+                                    const one = await getOne()
+                                    console.log(one) // 1
+                                }
+                                
+                                test()
+                            </pre>
+                        </div>
+                        <strong>Return await
+                        </strong>
+
+                        <p>There's no need to await before returning a promise. You can return the promise directly.
+                        </p>
+
+                        <p>
+                            (If you return await something, you resolve the original promise first. Then, you create a
+                            new promise from the resolved
+                            value. return await effectively does nothing. No need for the extra step).
+
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                // Don't need to do this
+                                const test = async _ => {
+                                    return await getOne()
+                                }
+                                
+                                test()
+                                    .then(value => {
+                                    console.log(value) // 1
+                                })
+                            </pre>
+                        </div>
+
+                        <div class="code_block">
+                            <pre>
+                                // Do this instead
+                                const test = async _ => {
+                                    return getOne()
+                                }
+                                
+                                test()
+                                    .then(value => {
+                                    console.log(value) // 1
+                                })
+                            </pre>
+                        </div>
+                        <p><b>Note:</b>If you don't need await, you don't need to use an async function. The example
+                            above can
+                            be rewritten as follows:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                // Do this instead
+                                const test = _ => {
+                                    return getOne()
+                                }
+                                
+                                test()
+                                    .then(value => {
+                                    console.log(value) // 1
+                                })
+                            </pre>
+                        </div>
+
+                        <strong>Handling errors
+                        </strong>
+                        <p>If a promise results in an error, you handle it with a catch call, like this:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                const getOne = async (success = true) => {
+                                    if (success) return 1
+                                    throw new Error('Failure!')
+                                }
+                                
+                                getOne(false)
+                                    .catch(error => console.log(error)) // Failure!
+                            </pre>
+                        </div>
+                        <p>If you want to handle an error in an asynchronous function, you need to use a try/catch call.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                const test = async _ => {
+                                    try {
+                                        const one = await getOne(false)
+                                    } catch (error) {
+                                        console.log(error) // Failure!
+                                    }
+                                }
+                                
+                                test()
+                            </pre>
+                        </div>
+
+                        <p>If you have multiple await keywords, error handling can become ugly...</p>
+                        <div class="code_block">
+                            <pre>
+                                const test = async _ => {
+                                    try {
+                                        const one = await getOne(false)
+                                    } catch (error) {
+                                        console.log(error) // Failure!
+                                    }
+                                
+                                    try {
+                                        const two = await getTwo(false)
+                                    } catch (error) {
+                                        console.log(error) // Failure!
+                                    }
+                                    
+                                    try {
+                                        const three = await getThree(false)
+                                    } catch (error) {
+                                        console.log(error) // Failure!
+                                    }
+                                }
+                                
+                                test()
+                            </pre>
+                        </div>
+
+                        <p>There's a better way.</p>
+                        <p>We know that asynchronous functions always return a promise. When we call a promise, we can
+                            handle errors in a catch
+                            call. This means we can handle any errors from our asynchronous function by adding .catch.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                const test = async _ => {
+                                    const one = await getOne(false)
+                                    const two = await getTwo(false)
+                                    const three = await getThree(false)
+                                }
+                                
+                                test()
+                                    .catch(error => console.log(error)))
+                            </pre>
+                        </div>
+                        <p><b>Note:</b> The Promise catch method lets you catch one error only.
+                        </p>
+
+                        <strong>Multiple awaits
+                        </strong>
+
+                        <p>await blocks JavaScript from executing the next line of code until a promise resolves. This
+                            may
+                            have the unintended
+                            consequence of slowing down code execution.</p>
+
+                        <p>To show this in action, we need to create a delay before resolving the promise. We can create
+                            a
+                            delay with a sleep
+                            function.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            const sleep = ms => {
+                                return new Promise(resolve => setTimeout(resolve, ms))
+                            }
+                        </pre>
+                        </div>
+                        <p>ms is the number of milliseconds to wait before resolving. If you pass in 1000 into sleep,
+                            JavaScript will wait for one
+                            second before resolving the promise.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            // Using Sleep
+                            console.log('Now');
+
+                            sleep(1000)
+                                .then(v => { 
+                                    console.log('After one second') // prints after one second
+                                })
+                        </pre>
+                        </div>
+
+                        <p>Let's say getOne takes one second to resolve. To create this delay, we pass 1000 (one second)
+                            into sleep. After one
+                            second has passed and the sleep promise resolves, we return the value 1.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            const getOne = _ => {
+                                return sleep(1000).then(v => 1)
+                            }
+                        </pre>
+                        </div>
+                        <p>If you await getOne(), you'll see that it takes one second before getOne resolves.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            const test = async _ => {
+                            console.log('Now')
+                            
+                            const one = await getOne()
+                                console.log(one)
+                            }
+                            
+                            test() // Prints 1 fter one second
+                        </pre>
+                        </div>
+
+                        <p>Now let's say you need to wait for three promises. Each promise has a one-second delay.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                            const getOne = _ => {
+                                return sleep(1000).then(v => 1)
+                            }
+                            
+                            const getTwo = _ => {
+                                return sleep(1000).then(v => 2)
+                            }
+                            
+                            const getThree = _ => {
+                                return sleep(1000).then(v => 3)
+                            }
+                        </pre>
+                        </div>
+                        <p>
+                            If you await these three promises in a row, you'll have to wait for three seconds before all
+                            three promises get
+                            resolved. This is not good because we forced JavaScript to wait two extra seconds before
+                            doing
+                            what we need to do.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const test = async _ => {
+                                const one = await getOne()
+                                console.log(one)
+                                
+                                const two = await getTwo()
+                                console.log(two)
+                                
+                                const three = await getThree()
+                                console.log(three)
+                                
+                                console.log('Done')
+                            }
+                            
+                            test()
+                        </pre>
+                        </div>
+
+                        <p>If getOne, getTwo and getThree can be fetched simultaneously, you'll save two seconds. You
+                            can
+                            fetch these three
+                            promises at the same time with Promise.all.
+                        </p>
+                        <p>There are three steps:</p>
+
+                        <ul>
+                            <li>Create the three promises
+                            </li>
+                            <li>Add all three promises into an array
+                            </li>
+                            <li>await the array of promises with Promise.all
+                            </li>
+                        </ul>
+                        <p>Here's what it looks like:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                            const test = async _ => {
+                                const promises = [getOne(), getTwo(), getThree()]
+                                console.log('Now')
+                                
+                                const [one, two, three] = await Promise.all(promises)
+                                console.log(one)
+                                console.log(two)
+                                console.log(three)
+                                
+                                console.log('Done')
+                            }
+                            
+                            test()
+                        </pre>
+                        </div>
+                        <img src="../assets/promicesall.gif">
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

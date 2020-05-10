@@ -1,0 +1,382 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Preparation</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="../variables/variables.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="js_container">
+            <h1 class="menu"><a href="../index.html">Menu</a></h1>
+            <div class="title_container">
+                <h4><span>"Callbacks"</span></h4>
+            </div>
+            <div class="des_continer">
+                <div class="des_border">
+                    <div class="description">
+                        <strong>Callbacks?</strong>
+                        <p>A callback is a function that will be executed when an asynchronous operation has been
+                            completed.
+                        </p>
+                        <p>
+                            A callback is passed as an argument to an asynchronous operation. Normally, this is passed
+                            as the last argument of the
+                            function. Doing this it’s a good practice, so keep that in mind.
+                        </p>
+                        <p>The callback structure seems like this:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function sayHello() {
+                                    console.log('Hello everyone');
+                                }
+                                
+                                setTimeout(sayHello(), 3000)
+                            </pre>
+                        </div>
+                        <p>
+                            What we did in the above example was, first to define a function that prints a message to
+                            the console. After that, we
+                            use a timer called setTimeout (this timer is a native Javascript function). This timer is an
+                            asynchronous operation that
+                            executes the callback after a certain time. In this example, after 3000ms (3 seconds) will
+                            be executed the sayHello
+                            function.
+                        </p>
+                        <p>
+                            There are other real-world examples of asynchronous actions, e.g. loading scripts and
+                            modules.
+                            <br>
+                            Take a look at the function loadScript(src), that loads a script with the given src:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                function loadScript(src) {
+                                    // creates a script tag and append it to the page
+                                    // this causes the script with given src to start loading and run when complete
+                                    let script = document.createElement('script');
+                                    script.src = src;
+                                    document.head.append(script);
+                                }
+                            </pre>
+                        </div>
+                        <p>
+                            It appends to the document the new, dynamically created, tag
+                            with given src.The browser automatically starts loading it and executes when complete.
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                // load and execute the script at the given path
+                                loadScript('/my/script.js');
+                            </pre>
+                        </div>
+                        <p>The script is executed “asynchronously”, as it starts loading now, but runs later, when the
+                            function has already
+                            finished.
+                        </p>
+                        <p>If there’s any code below loadScript(…), it doesn’t wait until the script loading finishes.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js');
+                                // the code below loadScript
+                                // doesn't wait for the script loading to finish
+                                // ...
+                            </pre>
+                        </div>
+                        <p>
+                            Let’s say we need to use the new script as soon as it loads. It declares new functions, and
+                            we want to run them.
+                            <br>
+                            But if we do that immediately after the loadScript(…) call, that wouldn’t work:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js'); // the script has "function newFunction() {…}"
+                                
+                                newFunction(); // no such function!
+                            </pre>
+                        </div>
+
+                        <p>
+                            Naturally, the browser probably didn’t have time to load the script. As of now, the
+                            loadScript function doesn’t provide
+                            a way to track the load completion. The script loads and eventually runs, that’s all. But
+                            we’d like to know when it
+                            happens, to use new functions and variables from that script.
+                        </p>
+
+                        <p>Let’s add a callback function as a second argument to loadScript that should execute when the
+                            script loads:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                function loadScript(src, callback) {
+                                    let script = document.createElement('script');
+                                    script.src = src;
+                                    
+                                    script.onload = () => callback(script);
+                                    
+                                    document.head.append(script);
+                                }
+                            </pre>
+                        </div>
+                        <p>Now if we want to call new functions from the script, we should write that in the callback:
+                        </p>
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js', function() {
+                                    // the callback runs after the script is loaded
+                                    newFunction(); // so now it works
+                                    ...
+                                });
+                            </pre>
+                        </div>
+                        <p>That’s the idea: the second argument is a function (usually anonymous) that runs when the
+                            action is completed.
+
+                            Here’s a runnable example with a real script:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                function loadScript(src, callback) {
+                                    let script = document.createElement('script');
+                                    script.src = src;
+                                    script.onload = () => callback(script);
+                                    document.head.append(script);
+                                }
+                                
+                                loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
+                                    alert(`Cool, the script ${script.src} is loaded`);
+                                    alert( _ ); // function declared in the loaded script
+                                });
+                            </pre>
+                        </div>
+                        <p>That’s called a “callback-based” style of asynchronous programming. A function that does
+                            something asynchronously should
+                            provide a callback argument where we put the function to run after it’s complete.
+                        </p>
+                        <p>Here we did it in loadScript, but of course it’s a general approach.
+                        </p>
+
+                        <strong>Callback in callback</strong>
+
+                        <p>How can we load two scripts sequentially: the first one, and then the second one after it?
+
+                            The natural solution would be to put the second loadScript call inside the callback, like
+                            this:</p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js', function(script) {
+                                
+                                    alert(`Cool, the ${script.src} is loaded, let's load one more`);
+                                    
+                                    loadScript('/my/script2.js', function(script) {
+                                        alert(`Cool, the second script is loaded`);
+                                    });
+                                
+                                });
+                            </pre>
+                        </div>
+                        <p>After the outer loadScript is complete, the callback initiates the inner one.
+
+                            What if we want one more script…?</p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js', function(script) {
+
+                                    loadScript('/my/script2.js', function(script) {
+
+                                    loadScript('/my/script3.js', function(script) {
+                                        // ...continue after all scripts are loaded
+                                    });
+                                    })
+                                });
+                            </pre>
+                        </div>
+                        <p>So, every new action is inside a callback. That’s fine for few actions, but not good for
+                            many, so we’ll see other
+                            variants soon.
+                        </p>
+
+                        <strong>Handling errors</strong>
+
+                        <p>In the above examples we didn’t consider errors. What if the script loading fails? Our
+                            callback should be able to react
+                            on that.
+
+                            Here’s an improved version of loadScript that tracks loading errors:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                function loadScript(src, callback) {
+                                    let script = document.createElement('script');
+                                    script.src = src;
+                                    
+                                    script.onload = () => callback(null, script);
+                                    script.onerror = () => callback(new Error(`Script load error for ${src}`));
+                                
+                                    document.head.append(script);
+                                }
+                            </pre>
+                        </div>
+                        <p>It calls callback(null, script) for successful load and callback(error) otherwise.
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('/my/script.js', function(error, script) {
+                                    if (error) {
+                                        // handle error
+                                    } else {
+                                        // script loaded successfully
+                                    }
+                                });
+                            </pre>
+                        </div>
+                        <p>Once again, the recipe that we used for loadScript is actually quite common. It’s called the
+                            “error-first callback”
+                            style.
+                        </p>
+                        <p>The convention is:</p>
+                        <ul>
+                            <li>The first argument of the callback is reserved for an error if it occurs. Then
+                                callback(err) is called.</li>
+                            <li>The second argument (and the next ones if needed) are for the successful result. Then
+                                callback(null, result1, result2…)
+                                is called.
+                            </li>
+                        </ul>
+                        <p>So the single callback function is used both for reporting errors and passing back results.
+                        </p>
+
+                        <strong>Pyramid of Doom</strong>
+                        <p>
+                            From the first look, it’s a viable way of asynchronous coding. And indeed it is. For one or
+                            maybe two nested calls it
+                            looks fine.
+
+                            But for multiple asynchronous actions that follow one after another we’ll have code like
+                            this:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('1.js', function(error, script) {
+                                
+                                    if (error) {
+                                        handleError(error);
+                                    } else {
+                                    // ...
+                                    loadScript('2.js', function(error, script) {
+                                        if (error) {
+                                             handleError(error);
+                                        } else {
+                                    // ...
+
+                                        loadScript('3.js', function(error, script) {
+                                            if (error) {
+                                                handleError(error);
+                                            } else {
+                                        // ...continue after all scripts are loaded (*)
+                                            }
+                                        });
+                                        }
+                                    })
+                                    }
+                                });
+                            </pre>
+                        </div>
+
+                        <p>In the code above:</p>
+
+                        <ul>
+                            <li>We load 1.js, then if there’s no error.</li>
+                            <li>We load 2.js, then if there’s no error.</li>
+                            <li>We load 3.js, then if there’s no error – do something else (*).</li>
+                        </ul>
+                        <p>As calls become more nested, the code becomes deeper and increasingly more difficult to
+                            manage, especially if we have
+                            real code instead of ... that may include more loops, conditional statements and so on.
+
+                            That’s sometimes called “callback hell” or “pyramid of doom.”</p>
+
+                        <p>The “pyramid” of nested calls grows to the right with every asynchronous action. Soon it
+                            spirals out of control.
+
+                            So this way of coding isn’t very good.
+
+                            We can try to alleviate the problem by making every action a standalone function, like this:
+                        </p>
+
+                        <div class="code_block">
+                            <pre>
+                                loadScript('1.js', step1);
+                                
+                                function step1(error, script) {
+                                    if (error) {
+                                        handleError(error);
+                                    } else {
+                                    // ...
+                                        loadScript('2.js', step2);
+                                    }
+                                }
+                                
+                                function step2(error, script) {
+                                    if (error) {
+                                        handleError(error);
+                                    } else {
+                                        // ...
+                                        loadScript('3.js', step3);
+                                    }
+                                }
+                                
+                                function step3(error, script) {
+                                    if (error) {
+                                        handleError(error);
+                                    } else {
+                                        // ...continue after all scripts are loaded (*)
+                                    }
+                                };
+                            </pre>
+                        </div>
+                        <p>See? It does the same, and there’s no deep nesting now because we made every action a
+                            separate top-level function.
+                        </p>
+                        <p>It works, but the code looks like a torn apart spreadsheet. It’s difficult to read, and you
+                            probably noticed that one
+                            needs to eye-jump between pieces while reading it. That’s inconvenient, especially if the
+                            reader is not familiar with
+                            the code and doesn’t know where to eye-jump.</p>
+
+                        <p>Also, the functions named step* are all of single use, they are created only to avoid the
+                            “pyramid of doom.” No one is
+                            going to reuse them outside of the action chain. So there’s a bit of namespace cluttering
+                            here.
+                            <br>
+                            We’d like to have something better.
+                            <br>
+                            Luckily, there are other ways to avoid such pyramids. One of the best ways is to use
+                            “promises”.</p>
+
+                        <em>Thanks for reading...</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
