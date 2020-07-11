@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    (async function () {
-        await fetch('./menu.json').then(res => res.json())
+    (function () {
+        fetch('./menu.json').then(res => res.json())
             .then(response => {
                 createList(response);
             })
